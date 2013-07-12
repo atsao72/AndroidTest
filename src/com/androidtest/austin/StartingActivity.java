@@ -77,6 +77,7 @@ public class StartingActivity extends Activity {
 		showButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				showButton.setVisibility(View.INVISIBLE);
 				try {
 					display.setText(reader.readLine());
 				} catch (IOException e1) {
@@ -87,7 +88,7 @@ public class StartingActivity extends Activity {
 					public void run() {
 						try {
 							for (int i = 0; i < 2; i++) {
-								sleep(2000);
+								sleep(3000);
 								runOnUiThread(new Runnable() {
 									@Override
 									public void run() {
@@ -99,6 +100,7 @@ public class StartingActivity extends Activity {
 									}
 								});
 							}
+							sleep(2000);
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -125,14 +127,16 @@ public class StartingActivity extends Activity {
 								}
 								String verdict = "";
 								if (answer.equals(correct)) {
-									verdict = "correct";
+									verdict = "Correct!";
 								} else {
-									verdict = "wrong";
+									verdict = "Incorrect!";
 								}
-								display.setText("Your answer is " + verdict);
+								display.setText(verdict);
 					        }
 						 });
 						alert.show();
+						showButton.setVisibility(View.VISIBLE);
+						showButton.setText("Next equation");
 							}
 						});
 						}
