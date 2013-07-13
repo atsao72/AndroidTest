@@ -27,13 +27,12 @@ import android.widget.TextView;
 
 public class StartingActivity extends Activity {
 
-	String equation;
 	Button showButton;
 	Button checkButton;
 	TextView display;
+	TextView levelDisplay;
 	AutoCompleteTextView input;
 	String answer;
-	Scanner scanner;
 	InputStreamReader inputStreamReader;
 	BufferedReader reader;
 	InputStream is;
@@ -42,19 +41,19 @@ public class StartingActivity extends Activity {
 	InputStream answerIs;
 	String correct;
 	Thread timer;
-	Context context=this;
-	Activity activity = this;
+	int level = 1;
+	int speed;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_starting);
-		equation = "";
+		levelDisplay = (TextView) findViewById(R.id.levelText);
 		showButton = (Button) findViewById(R.id.buttonShow);
 		//checkButton = (Button) findViewById(R.id.buttonCheck);
 		display = (TextView) findViewById(R.id.textViewDisplay);
 		//input = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
-
+		
 		AssetManager am = getAssets();
 		try {
 			is = am.open("Math questions.txt");
@@ -74,9 +73,13 @@ public class StartingActivity extends Activity {
 		answerInputStreamReader = new InputStreamReader(answerIs);
 		answerReader = new BufferedReader(answerInputStreamReader);
 		
+		Bundle gotBundle = getIntent().getExtras();
+		speed = gotBundle.getInt("time");
+		
 		showButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				levelDisplay.setText("Level " + Integer.toString(level));
 				showButton.setVisibility(View.INVISIBLE);
 				try {
 					display.setText(reader.readLine());
@@ -84,11 +87,12 @@ public class StartingActivity extends Activity {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
 				timer = new Thread() {
 					public void run() {
 						try {
-							for (int i = 0; i < 2; i++) {
-								sleep(3000);
+							for (int i = 1; i <= 2; i++) {
+								sleep(speed);
 								runOnUiThread(new Runnable() {
 									@Override
 									public void run() {
@@ -100,18 +104,20 @@ public class StartingActivity extends Activity {
 									}
 								});
 							}
-							sleep(2000);
+							if(speed!=1000){
+							sleep(speed-1000);
+							}
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
-						}finally{							
-						activity.runOnUiThread(new Runnable() {
+						}finally{
+						StartingActivity.this.runOnUiThread(new Runnable() {
 						@Override
 						public void run() {	
-						AlertDialog.Builder alert = new AlertDialog.Builder(context);
+						AlertDialog.Builder alert = new AlertDialog.Builder(StartingActivity.this);
 						alert.setTitle("Your Answer");
 						alert.setMessage("Input your answer:");
-						final EditText inputAnswer = new EditText(context);
+						final EditText inputAnswer = new EditText(StartingActivity.this);
 						alert.setView(inputAnswer);
 						alert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int whichButton) {
@@ -125,28 +131,29 @@ public class StartingActivity extends Activity {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-								String verdict = "";
+								String message = "";
 								if (answer.equals(correct)) {
-									verdict = "Correct!";
+									message = "Correct!";
 								} else {
-									verdict = "Incorrect!";
+									message = "Incorrect!";
 								}
-								display.setText(verdict);
+								display.setText(message);
 					        }
 						 });
 						alert.show();
 						showButton.setVisibility(View.VISIBLE);
-						showButton.setText("Next equation");
-							}
+						showButton.setText("Next level");
+						
+						}
 						});
 						}
 					}
 				};
+				
 				timer.start();
-				timer.stop();
+				level++;
 			}
 		});
-
 	}
 
 	@Override

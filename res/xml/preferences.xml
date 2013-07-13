@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <ListPreference
+        android:title="Change Speed"
+        android:key="speedList"
+        android:summary="Change the time between equations"
+        android:entries="@array/seconds"
+        android:entryValues="@array/values"
+        ></ListPreference>
+
+</PreferenceScreen>

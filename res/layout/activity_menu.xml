@@ -31,6 +31,12 @@
         android:text="How To Play" 
         android:layout_marginTop="40dp"/>
 
-"
+    <Button
+        android:id="@+id/optionsButton"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="Options" />
     
 </LinearLayout>

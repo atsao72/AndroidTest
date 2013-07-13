@@ -12,17 +12,29 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="First level" 
+        android:text="@string/level"
+        android:textSize="45dp"
+        android:layout_gravity="center"
+        android:gravity = "center"
+        android:id="@+id/levelText"
+        android:layout_marginTop="10dp"
+        ></TextView>
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="" 
         android:textSize="45dp"
         android:layout_gravity="center"
         android:gravity = "center"
         android:id="@+id/textViewDisplay"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="110dp"
         ></TextView>
+    
     <Button
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="Show equation"
+        android:text="Start"
         android:layout_gravity="center"
         android:layout_marginTop = "50dp"
         android:textSize="25dp"

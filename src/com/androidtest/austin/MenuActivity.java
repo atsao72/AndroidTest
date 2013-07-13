@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,6 +14,7 @@ public class MenuActivity extends Activity {
 
 	Button startButton;
 	Button howToButton;
+	Button optionsButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +22,20 @@ public class MenuActivity extends Activity {
 		setContentView(R.layout.activity_menu);
 		startButton = (Button) findViewById(R.id.startButton);
 		howToButton = (Button) findViewById(R.id.howToButton);
+		optionsButton = (Button) findViewById(R.id.optionsButton);
+		final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		getPrefs.edit().clear().commit();
 		
 	startButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			Intent startGame = new Intent("com.androidtest.austin.STARTINGACTIVITY");
+			int time = Integer.parseInt(getPrefs.getString("speedList", "3000"));
+			Bundle bundle = new Bundle();
+			bundle.putInt("time", time);
+			startGame.putExtras(bundle);
 			startActivity(startGame);
+			finish();
 		}
 	});
 	
@@ -40,6 +51,14 @@ public class MenuActivity extends Activity {
 				}
 			});
 			alert.show();
+		}
+	});
+	
+	optionsButton.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			Intent openOptions = new Intent("com.androidtest.austin.PREFERENCES");
+			startActivity(openOptions);
 		}
 	});
 	
