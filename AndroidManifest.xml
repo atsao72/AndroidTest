@@ -37,6 +37,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.androidtest.austin.PauseMenuActivity"
+            android:label="Paused" 
+            android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="com.androidtest.austin.PAUSEMENU" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

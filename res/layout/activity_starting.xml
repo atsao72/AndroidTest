@@ -8,17 +8,31 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".StartingActivity" >
+    
+	<LinearLayout android:orientation = "horizontal" 
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    >
+	    
+    	<Button
+    	    android:id="@+id/pauseButton"
+        	style="?android:attr/buttonStyleSmall"
+        	android:layout_width="30dp"
+        	android:layout_height="30dp"
+        	android:background="@drawable/pausebutton"
+        	android:text="" />
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/level"
-        android:textSize="45dp"
-        android:layout_gravity="center"
-        android:gravity = "center"
-        android:id="@+id/levelText"
-        android:layout_marginTop="10dp"
-        ></TextView>
+    	<TextView
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:text="@string/level"
+        	android:textSize="45dp"
+        	android:layout_gravity="center"
+        	android:gravity = "center"
+        	android:id="@+id/levelText"
+        	></TextView>
+    	
+    </LinearLayout>
     
     <TextView
         android:layout_width="fill_parent"

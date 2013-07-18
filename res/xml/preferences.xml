@@ -8,5 +8,6 @@
         android:entries="@array/seconds"
         android:entryValues="@array/values"
         ></ListPreference>
+    
 
 </PreferenceScreen>

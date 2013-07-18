@@ -7,14 +7,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.Scanner;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.text.Editable;
 import android.view.Menu;
@@ -28,7 +27,7 @@ import android.widget.TextView;
 public class StartingActivity extends Activity {
 
 	Button showButton;
-	Button checkButton;
+	Button pauseButton;
 	TextView display;
 	TextView levelDisplay;
 	AutoCompleteTextView input;
@@ -43,14 +42,17 @@ public class StartingActivity extends Activity {
 	Thread timer;
 	int level = 1;
 	int speed;
-
+	boolean paused = false;
+	Object object;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_starting);
+		object = new StartingActivity();
 		levelDisplay = (TextView) findViewById(R.id.levelText);
 		showButton = (Button) findViewById(R.id.buttonShow);
-		//checkButton = (Button) findViewById(R.id.buttonCheck);
+		pauseButton = (Button) findViewById(R.id.pauseButton);
 		display = (TextView) findViewById(R.id.textViewDisplay);
 		//input = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
 		
@@ -75,10 +77,11 @@ public class StartingActivity extends Activity {
 		
 		Bundle gotBundle = getIntent().getExtras();
 		speed = gotBundle.getInt("time");
-		
+
 		showButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				//object=new Object();
 				levelDisplay.setText("Level " + Integer.toString(level));
 				showButton.setVisibility(View.INVISIBLE);
 				try {
@@ -91,7 +94,9 @@ public class StartingActivity extends Activity {
 				timer = new Thread() {
 					public void run() {
 						try {
+							pauseTest();
 							for (int i = 1; i <= 2; i++) {
+								pauseTest();
 								sleep(speed);
 								runOnUiThread(new Runnable() {
 									@Override
@@ -103,15 +108,15 @@ public class StartingActivity extends Activity {
 										}
 									}
 								});
+							sleep(speed);
 							}
-							if(speed!=1000){
-							sleep(speed-1000);
-							}
-						} catch (InterruptedException e) {
+							pauseTest();
+						}
+						catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}finally{
-						StartingActivity.this.runOnUiThread(new Runnable() {
+						runOnUiThread(new Runnable() {
 						@Override
 						public void run() {	
 						AlertDialog.Builder alert = new AlertDialog.Builder(StartingActivity.this);
@@ -143,17 +148,64 @@ public class StartingActivity extends Activity {
 						alert.show();
 						showButton.setVisibility(View.VISIBLE);
 						showButton.setText("Next level");
-						
 						}
 						});
 						}
+						
 					}
 				};
-				
 				timer.start();
 				level++;
 			}
 		});
+		
+		pauseButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				pause();
+				
+				//onResume();
+				/*activity = new Thread(){
+					public void run(){
+						System.out.println("activity running");
+						StartingActivity.this.resume();	
+					}
+				};
+				activity.start();*/
+			}
+		});
+	}
+
+	public void pauseTest(){
+		synchronized(object){
+			while(paused){
+			try {
+				System.out.println("pausing ... ");
+				object.wait();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}
+		}
+	}
+	public void pause(){
+		super.onPause();
+		synchronized(object){
+			paused=true;
+			Intent intent = new Intent("com.androidtest.austin.PAUSEMENU");
+			startActivity(intent);
+			//resume();
+		}
+	}
+	@Override
+	public void onResume(){
+		super.onResume();
+		synchronized(object){
+			//System.out.println("in resume method");
+			paused=false;
+			object.notifyAll();
+		}
 	}
 
 	@Override

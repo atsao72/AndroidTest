@@ -24,7 +24,7 @@ public class MenuActivity extends Activity {
 		howToButton = (Button) findViewById(R.id.howToButton);
 		optionsButton = (Button) findViewById(R.id.optionsButton);
 		final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		getPrefs.edit().clear().commit();
+		//getPrefs.edit().clear().commit();
 		
 	startButton.setOnClickListener(new View.OnClickListener() {
 		@Override
