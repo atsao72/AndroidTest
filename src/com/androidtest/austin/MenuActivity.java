@@ -15,15 +15,19 @@ public class MenuActivity extends Activity {
 	Button startButton;
 	Button howToButton;
 	Button optionsButton;
+	Button levelButton;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu);
 		startButton = (Button) findViewById(R.id.startButton);
+		levelButton = (Button) findViewById(R.id.levelSelectButton);
 		howToButton = (Button) findViewById(R.id.howToButton);
 		optionsButton = (Button) findViewById(R.id.optionsButton);
 		final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		LevelSelectActivity levelActivity = new LevelSelectActivity();
+		levelActivity.setActivity();
 		//getPrefs.edit().clear().commit();
 		
 	startButton.setOnClickListener(new View.OnClickListener() {
@@ -31,9 +35,14 @@ public class MenuActivity extends Activity {
 		public void onClick(View v) {
 			Intent startGame = new Intent("com.androidtest.austin.STARTINGACTIVITY");
 			int time = Integer.parseInt(getPrefs.getString("speedList", "3000"));
+			LevelSelectActivity activity= new LevelSelectActivity();
+			int level = activity.getLevel();
+			Bundle bundleLevel = new Bundle();
+			bundleLevel.putInt("level", level);
 			Bundle bundle = new Bundle();
 			bundle.putInt("time", time);
 			startGame.putExtras(bundle);
+			startGame.putExtras(bundleLevel);
 			startActivity(startGame);
 			finish();
 		}
@@ -59,6 +68,14 @@ public class MenuActivity extends Activity {
 		public void onClick(View v) {
 			Intent openOptions = new Intent("com.androidtest.austin.PREFERENCES");
 			startActivity(openOptions);
+		}
+	});
+	
+	levelButton.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			Intent startLevelMenu = new Intent("com.androidtest.austin.LEVELSELECT");
+			startActivity(startLevelMenu);
 		}
 	});
 	

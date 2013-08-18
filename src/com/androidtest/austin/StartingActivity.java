@@ -1,66 +1,66 @@
 package com.androidtest.austin;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
-import android.text.Editable;
 import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+//Update levelSelect buttons -- change state after level passed.
+
 public class StartingActivity extends Activity {
 
-	Button showButton;
-	Button pauseButton;
-	TextView display;
-	TextView levelDisplay;
-	AutoCompleteTextView input;
-	String answer;
-	InputStreamReader inputStreamReader;
-	BufferedReader reader;
-	InputStream is;
-	InputStreamReader answerInputStreamReader;
-	BufferedReader answerReader;
-	InputStream answerIs;
-	String correct;
+	Button showButton, pauseButton;
+	TextView display, levelDisplay;
+	String answer, correct;
+	InputStreamReader inputStreamReader, answerInputStreamReader;
+	BufferedReader reader, answerReader;
+	InputStream is, answerIs;
 	Thread timer;
-	int level = 1;
-	int speed;
-	boolean paused = false;
+	int level, speed, levelStart;
+	boolean paused;
 	Object object;
+	String[] questionArray;
+	Bundle gotBundle;
+	ArrayList<String> questions, answers;
+	Button[] levelButtons;
+	public static Activity myActivity;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_starting);
+		paused=false;		
 		object = new StartingActivity();
 		levelDisplay = (TextView) findViewById(R.id.levelText);
 		showButton = (Button) findViewById(R.id.buttonShow);
 		pauseButton = (Button) findViewById(R.id.pauseButton);
 		display = (TextView) findViewById(R.id.textViewDisplay);
-		//input = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView1);
+		questions = new ArrayList<String>();
+		answers = new ArrayList<String>();
+		//***Need Fix: only works if start LevelSelectActivity first.***
+		levelButtons= new Button[]{(Button) StartingActivity.myActivity.findViewById(R.id.l1Button), (Button) StartingActivity.myActivity.findViewById(R.id.l2Button), 
+			(Button) StartingActivity.myActivity.findViewById(R.id.l3Button), (Button) StartingActivity.myActivity.findViewById(R.id.l4Button)};
+		final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		
 		AssetManager am = getAssets();
 		try {
 			is = am.open("Math questions.txt");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		inputStreamReader = new InputStreamReader(is);
@@ -69,93 +69,105 @@ public class StartingActivity extends Activity {
 		try {
 			answerIs = am.open("answers.txt");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		answerInputStreamReader = new InputStreamReader(answerIs);
 		answerReader = new BufferedReader(answerInputStreamReader);
 		
-		Bundle gotBundle = getIntent().getExtras();
-		speed = gotBundle.getInt("time");
+		gotBundle = getIntent().getExtras();
+		levelStart = gotBundle.getInt("level");
+		level=levelStart;
+		levelDisplay.setText("Level " + Integer.toString(level));
+		try {
+			String question=reader.readLine();
+			while(question!=null){
+				 questions.add(question);
+				 question=reader.readLine();
+			}
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		try {
+			String answer= answerReader.readLine();
+			while(answer!=null){
+				answers.add(answer);
+				answer = answerReader.readLine();
+			}
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
 
 		showButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				//object=new Object();
+				speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
 				levelDisplay.setText("Level " + Integer.toString(level));
 				showButton.setVisibility(View.INVISIBLE);
-				try {
-					display.setText(reader.readLine());
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				questionArray=questions.get(level-1).split("&");
+				display.setText(questionArray[0]);
 				
 				timer = new Thread() {
 					public void run() {
 						try {
 							pauseTest();
-							for (int i = 1; i <= 2; i++) {
+							sleep(speed);
+							for (int i = 1; i < questionArray.length; i++) {
 								pauseTest();
-								sleep(speed);
+								speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
+								final String question = questionArray[i];
 								runOnUiThread(new Runnable() {
 									@Override
 									public void run() {
-										try {
-											display.setText(reader.readLine());
-										} catch (IOException e) {
-											e.printStackTrace();
-										}
+										display.setText(question);
 									}
 								});
 							sleep(speed);
-							}
+							}							
 							pauseTest();
 						}
 						catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}finally{
 						runOnUiThread(new Runnable() {
 						@Override
 						public void run() {	
-						AlertDialog.Builder alert = new AlertDialog.Builder(StartingActivity.this);
-						alert.setTitle("Your Answer");
-						alert.setMessage("Input your answer:");
-						final EditText inputAnswer = new EditText(StartingActivity.this);
-						alert.setView(inputAnswer);
-						alert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
-							public void onClick(DialogInterface dialog, int whichButton) {
-								answer = inputAnswer.getText().toString();
-								try {
-									correct = answerReader.readLine();
-								} catch (NumberFormatException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								} catch (IOException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+							AlertDialog.Builder alert = new AlertDialog.Builder(StartingActivity.this);
+							alert.setTitle("Your Answer");
+							alert.setMessage("Input your answer:");
+							final EditText inputAnswer = new EditText(StartingActivity.this);
+							alert.setView(inputAnswer);
+							alert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int whichButton) {
+									answer = inputAnswer.getText().toString();
+									try {
+										correct = answers.get(level-1);
+									} catch (NumberFormatException e) {
+										e.printStackTrace();
+									}
+									String message = "";
+									if (answer.equals(correct)) {
+										message = "Correct!";
+										showButton.setText("Next level");
+										showButton.setVisibility(View.VISIBLE);
+										levelButtons[level-1].setSaveEnabled(true);
+										level++;
+									} else {
+										message = "Incorrect!";
+										showButton.setText("Retry");
+										showButton.setVisibility(View.VISIBLE);
+									}
+									display.setText(message);
 								}
-								String message = "";
-								if (answer.equals(correct)) {
-									message = "Correct!";
-								} else {
-									message = "Incorrect!";
-								}
-								display.setText(message);
-					        }
-						 });
-						alert.show();
-						showButton.setVisibility(View.VISIBLE);
-						showButton.setText("Next level");
+							});
+							alert.show();
+							//showButton.setText("Next level");
 						}
 						});
 						}
-						
 					}
 				};
 				timer.start();
-				level++;
+				//level++;
 			}
 		});
 		
@@ -163,46 +175,35 @@ public class StartingActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				pause();
-				
-				//onResume();
-				/*activity = new Thread(){
-					public void run(){
-						System.out.println("activity running");
-						StartingActivity.this.resume();	
-					}
-				};
-				activity.start();*/
 			}
 		});
 	}
-
-	public void pauseTest(){
+	
+	private void pauseTest(){
 		synchronized(object){
 			while(paused){
 			try {
-				System.out.println("pausing ... ");
 				object.wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			}
 		}
 	}
-	public void pause(){
+	
+	private void pause(){
 		super.onPause();
 		synchronized(object){
 			paused=true;
 			Intent intent = new Intent("com.androidtest.austin.PAUSEMENU");
 			startActivity(intent);
-			//resume();
 		}
 	}
+	
 	@Override
 	public void onResume(){
 		super.onResume();
 		synchronized(object){
-			//System.out.println("in resume method");
 			paused=false;
 			object.notifyAll();
 		}

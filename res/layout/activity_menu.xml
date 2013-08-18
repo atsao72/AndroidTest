@@ -12,7 +12,7 @@
         android:layout_marginTop = "30dp"
         android:textColor = "#FF8000"
         android:textSize = "40dp"
-        android:text="Math Game"
+        android:text="Math Challenge"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -29,14 +29,22 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="How To Play" 
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="35dp"/>
+    
+	<Button
+        android:id="@+id/levelSelectButton"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:text="Level Select" />
 
     <Button
         android:id="@+id/optionsButton"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="35dp"
         android:text="Options" />
     
 </LinearLayout>
