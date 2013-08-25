@@ -45,7 +45,7 @@ public class StartingActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_starting);
-		paused=false;		
+		paused=false;
 		object = new StartingActivity();
 		levelDisplay = (TextView) findViewById(R.id.levelText);
 		showButton = (Button) findViewById(R.id.buttonShow);
@@ -57,7 +57,7 @@ public class StartingActivity extends Activity {
 		//levelButtons= new Button[]{(Button) StartingActivity.myActivity.findViewById(R.id.l1Button), (Button) StartingActivity.myActivity.findViewById(R.id.l2Button), 
 		//	(Button) StartingActivity.myActivity.findViewById(R.id.l3Button), (Button) StartingActivity.myActivity.findViewById(R.id.l4Button)};
 		//final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		speed=4000;
+		speed=2000;
 		//levelsLocked = new boolean[3];
 		
 		AssetManager am = getAssets();

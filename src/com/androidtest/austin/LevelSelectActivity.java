@@ -23,9 +23,9 @@ public class LevelSelectActivity extends Activity{
 		button2= (Button) findViewById(R.id.l2Button);
 		button3= (Button) findViewById(R.id.l3Button);
 		button4= (Button) findViewById(R.id.l4Button);
-		buttons = new Button[]{button1, button2, button3, button4};
+		buttons = new Button[]{button2, button3, button4};
 		
-		for(int i=0;i<MenuActivity.levelsLocked.length;i++){
+		for(int i=0;i<buttons.length;i++){
 			buttons[i].setEnabled(MenuActivity.levelsLocked[i]);
 		}
 		

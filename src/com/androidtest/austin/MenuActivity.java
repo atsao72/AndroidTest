@@ -16,7 +16,7 @@ public class MenuActivity extends Activity {
 	Button howToButton;
 	Button optionsButton;
 	Button levelButton;
-	public static boolean[] levelsLocked = new boolean[3];;
+	public static boolean[] levelsLocked = new boolean[4];
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
