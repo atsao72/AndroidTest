@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="Options" />
+        android:text="Options"
+        android:visibility = "invisible" />"
     
     <Button
         android:id="@+id/quitButton"

@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 //Update levelSelect buttons -- change state after level passed.
+//***Get rid of speed preferences
 
 public class StartingActivity extends Activity {
 
@@ -38,7 +39,7 @@ public class StartingActivity extends Activity {
 	Bundle gotBundle;
 	ArrayList<String> questions, answers;
 	Button[] levelButtons;
-	public static Activity myActivity;
+	//public static boolean[] levelsLocked;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,9 +54,11 @@ public class StartingActivity extends Activity {
 		questions = new ArrayList<String>();
 		answers = new ArrayList<String>();
 		//***Need Fix: only works if start LevelSelectActivity first.***
-		levelButtons= new Button[]{(Button) StartingActivity.myActivity.findViewById(R.id.l1Button), (Button) StartingActivity.myActivity.findViewById(R.id.l2Button), 
-			(Button) StartingActivity.myActivity.findViewById(R.id.l3Button), (Button) StartingActivity.myActivity.findViewById(R.id.l4Button)};
-		final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		//levelButtons= new Button[]{(Button) StartingActivity.myActivity.findViewById(R.id.l1Button), (Button) StartingActivity.myActivity.findViewById(R.id.l2Button), 
+		//	(Button) StartingActivity.myActivity.findViewById(R.id.l3Button), (Button) StartingActivity.myActivity.findViewById(R.id.l4Button)};
+		//final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		speed=4000;
+		//levelsLocked = new boolean[3];
 		
 		AssetManager am = getAssets();
 		try {
@@ -74,8 +77,9 @@ public class StartingActivity extends Activity {
 		answerInputStreamReader = new InputStreamReader(answerIs);
 		answerReader = new BufferedReader(answerInputStreamReader);
 		
-		gotBundle = getIntent().getExtras();
-		levelStart = gotBundle.getInt("level");
+		//gotBundle = getIntent().getExtras();
+		//levelStart = gotBundle.getInt("level");
+		levelStart= LevelSelectActivity.getLevel();
 		level=levelStart;
 		levelDisplay.setText("Level " + Integer.toString(level));
 		try {
@@ -97,10 +101,12 @@ public class StartingActivity extends Activity {
 			e2.printStackTrace();
 		}
 
+
+		
 		showButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
+				//speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
 				levelDisplay.setText("Level " + Integer.toString(level));
 				showButton.setVisibility(View.INVISIBLE);
 				questionArray=questions.get(level-1).split("&");
@@ -110,10 +116,13 @@ public class StartingActivity extends Activity {
 					public void run() {
 						try {
 							pauseTest();
+							if(level%5==0&&speed!=1000){
+								speed=speed-1000;
+							}
 							sleep(speed);
 							for (int i = 1; i < questionArray.length; i++) {
 								pauseTest();
-								speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
+								//speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
 								final String question = questionArray[i];
 								runOnUiThread(new Runnable() {
 									@Override
@@ -149,7 +158,8 @@ public class StartingActivity extends Activity {
 										message = "Correct!";
 										showButton.setText("Next level");
 										showButton.setVisibility(View.VISIBLE);
-										levelButtons[level-1].setSaveEnabled(true);
+										//levelButtons[level-1].setSaveEnabled(true);
+										MenuActivity.levelsLocked[level-1]=true;
 										level++;
 									} else {
 										message = "Incorrect!";
@@ -196,6 +206,7 @@ public class StartingActivity extends Activity {
 		synchronized(object){
 			paused=true;
 			Intent intent = new Intent("com.androidtest.austin.PAUSEMENU");
+			intent.putExtra("caller", "StartingActivity");
 			startActivity(intent);
 		}
 	}

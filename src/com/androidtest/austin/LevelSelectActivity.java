@@ -8,18 +8,12 @@ import android.widget.Button;
 
 public class LevelSelectActivity extends Activity{
 
-	Button button1;
-	Button button2;
-	Button button3;
-	Button button4;
-	int level=1;
-	
-	public LevelSelectActivity(){
-	
-	}
-	public void setActivity(){
-		StartingActivity.myActivity=this;
-	}
+	private Button button1;
+	private Button button2;
+	private Button button3;
+	private Button button4;
+	private static int level=1;
+	private Button[] buttons;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +23,14 @@ public class LevelSelectActivity extends Activity{
 		button2= (Button) findViewById(R.id.l2Button);
 		button3= (Button) findViewById(R.id.l3Button);
 		button4= (Button) findViewById(R.id.l4Button);
-		StartingActivity.myActivity= this;
-
+		buttons = new Button[]{button1, button2, button3, button4};
+		
+		for(int i=0;i<MenuActivity.levelsLocked.length;i++){
+			buttons[i].setEnabled(MenuActivity.levelsLocked[i]);
+		}
+		
+		button1.setEnabled(true);
+		
 		button1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -77,7 +77,7 @@ public class LevelSelectActivity extends Activity{
 		});
 	}
 	
-	public int getLevel(){
+	public static int getLevel(){
 		return level;
 	}
 		

@@ -16,6 +16,7 @@ public class MenuActivity extends Activity {
 	Button howToButton;
 	Button optionsButton;
 	Button levelButton;
+	public static boolean[] levelsLocked = new boolean[3];;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +27,12 @@ public class MenuActivity extends Activity {
 		howToButton = (Button) findViewById(R.id.howToButton);
 		optionsButton = (Button) findViewById(R.id.optionsButton);
 		final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		LevelSelectActivity levelActivity = new LevelSelectActivity();
-		levelActivity.setActivity();
-		//getPrefs.edit().clear().commit();
+		
+		/*for(int i=0;i<levelsLocked.length;i++){
+			levelsLocked[i]=false;
+		}*/
+		//LevelSelectActivity levelActivity = new LevelSelectActivity();
+		//levelActivity.setActivity();
 		
 	startButton.setOnClickListener(new View.OnClickListener() {
 		@Override
@@ -44,7 +48,6 @@ public class MenuActivity extends Activity {
 			startGame.putExtras(bundle);
 			startGame.putExtras(bundleLevel);
 			startActivity(startGame);
-			finish();
 		}
 	});
 	
@@ -63,14 +66,6 @@ public class MenuActivity extends Activity {
 		}
 	});
 	
-	optionsButton.setOnClickListener(new View.OnClickListener() {
-		@Override
-		public void onClick(View v) {
-			Intent openOptions = new Intent("com.androidtest.austin.PREFERENCES");
-			startActivity(openOptions);
-		}
-	});
-	
 	levelButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -79,5 +74,14 @@ public class MenuActivity extends Activity {
 		}
 	});
 	
+	optionsButton.setOnClickListener(new View.OnClickListener() {
+		@Override
+		public void onClick(View v) {
+			Intent openOptions = new Intent("com.androidtest.austin.PREFERENCES");
+			startActivity(openOptions);
+		}
+	});
+	
+
 	}
 }

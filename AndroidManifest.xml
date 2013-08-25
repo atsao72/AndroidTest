@@ -47,6 +47,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.androidtest.austin.ResetDialogActivity"
+            android:label="Reset?" 
+            android:theme="@android:style/Theme.Dialog">
+            <intent-filter>
+                <action android:name="com.androidtest.austin.RESETACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.androidtest.austin.LevelSelectActivity"
             android:label="@string/app_name" >
             <intent-filter>
