@@ -6,7 +6,7 @@
     
 	<LinearLayout android:orientation="horizontal"
 	    android:layout_width="fill_parent"
-	    android:layout_height = "match_parent"
+	    android:layout_height = "wrap_content"
 	    android:layout_marginTop="20dp">
 	    
 	    <Button
@@ -56,6 +56,61 @@
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
         	android:text="4" />
+    	
+    	</LinearLayout>
+    	
+    	<LinearLayout android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height = "wrap_content"
+	    android:layout_marginTop="20dp">
+	    
+	    <Button
+        	android:id="@+id/l5Button"
+       		android:background="@drawable/custom"
+       		android:textStyle="bold"
+        	android:textColor="#000000"
+        	android:textSize="20dp"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+			android:layout_marginLeft="20dp"
+        	android:layout_marginRight="20dp"
+        	android:text="5" />
+
+    	<Button
+        	android:id="@+id/l6Button"
+        	android:background="@drawable/custom"
+        	android:textStyle="bold"
+        	android:textColor="#000000"
+        	android:textSize="20dp"
+        	android:enabled="false"
+	        android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:layout_marginRight="20dp"
+        	android:text="6" />
+
+	    <Button
+    	    android:id="@+id/l7Button"
+        	android:background="@drawable/custom"
+        	android:textStyle="bold"
+        	android:textColor="#000000"
+        	android:textSize="20dp"
+        	android:enabled="false"
+       		android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginRight="20dp"
+        	android:text="7" />
+
+    	<Button
+        	android:id="@+id/l8Button"
+        	android:background="@drawable/custom"
+        	android:textStyle="bold"
+        	android:textColor="#000000"
+        	android:textSize="20dp"
+        	android:enabled="false"
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_marginRight="20dp"
+        	android:text="8" />
     	
     	</LinearLayout>
 

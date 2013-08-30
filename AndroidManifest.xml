@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.androidtest.austin"
+    package="com.mathchallenge.rook"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -10,11 +10,11 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/math"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
         <activity
-            android:name="com.androidtest.austin.MenuActivity"
+            android:name="com.mathchallenge.rook.MenuActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,44 +22,44 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.androidtest.austin.StartingActivity"
+            android:name="com.mathchallenge.rook.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="com.androidtest.austin.STARTINGACTIVITY" />
+                <action android:name="com.mathchallenge.rook.MAINACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.androidtest.austin.Preferences"
+            android:name="com.mathchallenge.rook.Preferences"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="com.androidtest.austin.PREFERENCES" />
+                <action android:name="com.mathchallenge.rook.PREFERENCES" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.androidtest.austin.PauseMenuActivity"
+            android:name="com.mathchallenge.rook.PauseMenuActivity"
             android:label="Paused" 
             android:theme="@android:style/Theme.Dialog">
             <intent-filter>
-                <action android:name="com.androidtest.austin.PAUSEMENU" />
+                <action android:name="com.mathchallenge.rook.PAUSEMENU" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.androidtest.austin.ResetDialogActivity"
-            android:label="Reset?" 
+            android:name="com.mathchallenge.rook.AnswerInputDialogActivity"
+            android:label="Your Answer" 
             android:theme="@android:style/Theme.Dialog">
             <intent-filter>
-                <action android:name="com.androidtest.austin.RESETACTIVITY" />
+                <action android:name="com.mathchallenge.rook.INPUTACTIVITY" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.androidtest.austin.LevelSelectActivity"
+            android:name="com.mathchallenge.rook.LevelSelectActivity"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="com.androidtest.austin.LEVELSELECT" />
+                <action android:name="com.mathchallenge.rook.LEVELSELECT" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
