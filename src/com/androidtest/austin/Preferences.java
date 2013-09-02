@@ -1,5 +1,7 @@
 package com.androidtest.austin;
 
+import com.androidtest.austin.R;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -26,7 +28,7 @@ public class Preferences extends PreferenceActivity{
 	
 		resetButton.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			public boolean onPreferenceClick(Preference preference) {
-	             Intent i = new Intent(Preferences.this,ResetDialogActivity.class);
+	             Intent i = new Intent(Preferences.this, AnswerInputDialogActivity.class);
 	             startActivity(i);
 	             return true;
 	         }

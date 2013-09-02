@@ -1,5 +1,7 @@
 package com.androidtest.austin;
 
+import com.androidtest.austin.R;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,7 +18,7 @@ public class MenuActivity extends Activity {
 	Button howToButton;
 	Button optionsButton;
 	Button levelButton;
-	public static boolean[] levelsLocked = new boolean[4];
+	public static boolean[] levelsLocked = new boolean[8];
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class MenuActivity extends Activity {
 	startButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			Intent startGame = new Intent("com.androidtest.austin.STARTINGACTIVITY");
+			Intent startGame = new Intent("com.androidtest.austin.MAINACTIVITY");
 			int time = Integer.parseInt(getPrefs.getString("speedList", "3000"));
 			LevelSelectActivity activity= new LevelSelectActivity();
 			int level = activity.getLevel();
