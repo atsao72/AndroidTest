@@ -182,11 +182,12 @@ public class MainActivity extends Activity {
 	private void pauseTest(){
 		synchronized(object){
 			while(paused){
-			try {
-				object.wait();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			//try {
+				//object.wait();
+				finish();
+			//} //catch (InterruptedException e) {
+				//e.printStackTrace();
+			//}
 			}
 		}
 	}

@@ -29,8 +29,8 @@ public class QuestionClass {
 				answer = question1 + question2;
 				break;
 			case 1:
-				if(question1<question2){
-					while(question1<question2){
+				if(question1<=question2){
+					while(question1<=question2){
 						question1 = rand.nextInt(10)+1;
 						question2 = rand.nextInt(10)+1;
 						answer = question1 - question2;

@@ -6,12 +6,15 @@ import java.util.TimerTask;
 import com.androidtest.austin.R;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -36,6 +39,18 @@ public class AnswerInputDialogActivity extends Activity {
 		buttonYes = (Button) findViewById(R.id.okButton);
 		userInput = (EditText) findViewById(R.id.input);
 
+		//userInput.setInputType(InputType.TYPE_CLASS_NUMBER);
+		//userInput.setRawInputType(Configuration.KEYBOARD_QWERTY);
+		/*userInput.setOnFocusChangeListener( new View.OnFocusChangeListener() {
+		    @Override
+		    public void onFocusChange(View v, boolean hasFocus) {
+		        if (hasFocus) {
+		            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+		        }
+		    }
+		});*/
+		userInput.setRawInputType(Configuration.KEYBOARD_12KEY);
+		
 		// gotBundle = getIntent().getExtras();
 		// final int level = gotBundle.getInt("level");
 
@@ -129,5 +144,5 @@ public class AnswerInputDialogActivity extends Activity {
 			}
 		});
 	}
-	
+
 }

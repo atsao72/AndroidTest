@@ -36,6 +36,7 @@ public class LevelSelectActivity extends Activity{
 				level=1;
 				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
 				startActivity(startActivity);
+				finish();
 			}
 		});
 		
@@ -48,6 +49,7 @@ public class LevelSelectActivity extends Activity{
 				//bundleFromLevel.putInt("level", level);
 				//startActivity.putExtras(bundleFromLevel);
 				startActivity(startActivity);
+				finish();
 			}
 		});
 		
@@ -60,6 +62,7 @@ public class LevelSelectActivity extends Activity{
 				//bundleFromLevel.putInt("level", level);
 				//startActivity.putExtras(bundleFromLevel);
 				startActivity(startActivity);
+				finish();
 			}
 		});
 		
@@ -72,6 +75,47 @@ public class LevelSelectActivity extends Activity{
 				//bundleFromLevel.putInt("level", level);
 				//startActivity.putExtras(bundleFromLevel);
 				startActivity(startActivity);
+				finish();
+			}
+		});
+		
+		button5.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				level=1;
+				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
+				startActivity(startActivity);
+				finish();
+			}
+		});
+		
+		button6.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				level=1;
+				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
+				startActivity(startActivity);
+				finish();
+			}
+		});
+		
+		button7.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				level=1;
+				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
+				startActivity(startActivity);
+				finish();
+			}
+		});
+		
+		button8.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				level=1;
+				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
+				startActivity(startActivity);
+				finish();
 			}
 		});
 	}
