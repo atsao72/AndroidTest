@@ -14,6 +14,8 @@ import android.widget.Button;
 
 public class MenuActivity extends Activity {
 
+	//this is a comment to test the commit thing
+	
 	Button startButton;
 	Button howToButton;
 	Button optionsButton;
