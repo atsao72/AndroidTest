@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:weightSum="5">
 
     <TextView
         android:id="@+id/titleText"
@@ -13,15 +14,26 @@
         android:textColor = "#FF8000"
         android:textSize = "40dp"
         android:text="Math Challenge"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_weight="1" />
+    
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="174dp"
+        android:layout_height="156dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/math1"
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/startButton"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="75dp"
-        android:text="Start game" />
+        android:layout_marginTop="45dp"
+        android:text="Start game" 
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/howToButton"
@@ -29,7 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="How To Play" 
-        android:layout_marginTop="35dp"/>
+        android:layout_marginTop="35dp"
+        android:layout_weight="1"/>
     
 	<Button
         android:id="@+id/levelSelectButton"
@@ -37,7 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="35dp"
-        android:text="Level Select" />
+        android:layout_marginBottom="30dp"
+        android:text="Level Select" 
+        android:layout_weight="1"/>
 
     <Button
         android:id="@+id/optionsButton"
@@ -46,6 +61,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="35dp"
         android:text="Options" 
-        android:visibility="invisible"/>
+        android:visibility="gone"/>
     
 </LinearLayout>

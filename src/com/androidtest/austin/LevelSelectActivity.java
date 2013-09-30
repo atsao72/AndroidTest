@@ -45,9 +45,6 @@ public class LevelSelectActivity extends Activity{
 			public void onClick(View v) {
 				level=2;
 				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				//Bundle bundleFromLevel = new Bundle();
-				//bundleFromLevel.putInt("level", level);
-				//startActivity.putExtras(bundleFromLevel);
 				startActivity(startActivity);
 				finish();
 			}
@@ -58,9 +55,6 @@ public class LevelSelectActivity extends Activity{
 			public void onClick(View v) {
 				level=3;
 				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				//Bundle bundleFromLevel = new Bundle();
-				//bundleFromLevel.putInt("level", level);
-				//startActivity.putExtras(bundleFromLevel);
 				startActivity(startActivity);
 				finish();
 			}
@@ -71,9 +65,6 @@ public class LevelSelectActivity extends Activity{
 			public void onClick(View v) {
 				level=4;
 				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				//Bundle bundleFromLevel = new Bundle();
-				//bundleFromLevel.putInt("level", level);
-				//startActivity.putExtras(bundleFromLevel);
 				startActivity(startActivity);
 				finish();
 			}
@@ -82,7 +73,7 @@ public class LevelSelectActivity extends Activity{
 		button5.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				level=1;
+				level=5;
 				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
 				startActivity(startActivity);
 				finish();
@@ -92,7 +83,7 @@ public class LevelSelectActivity extends Activity{
 		button6.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				level=1;
+				level=6;
 				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
 				startActivity(startActivity);
 				finish();
@@ -102,7 +93,7 @@ public class LevelSelectActivity extends Activity{
 		button7.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				level=1;
+				level=7;
 				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
 				startActivity(startActivity);
 				finish();
@@ -112,7 +103,7 @@ public class LevelSelectActivity extends Activity{
 		button8.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				level=1;
+				level=8;
 				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
 				startActivity(startActivity);
 				finish();

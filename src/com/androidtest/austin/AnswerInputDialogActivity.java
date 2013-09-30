@@ -61,7 +61,7 @@ public class AnswerInputDialogActivity extends Activity {
 				AnswerInputDialogActivity.this.finish();
 			}
 		}, 5000);
-*//*
+
 		Handler handler = new Handler();
 	    Runnable r=new Runnable() {
 	    	@Override
@@ -144,5 +144,16 @@ public class AnswerInputDialogActivity extends Activity {
 			}
 		});
 	}
+
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		mCountDownTimer.cancel();
+		//MainActivity.showButton.setText("Retry");
+		//MainActivity.showButton.setVisibility(View.VISIBLE);
+	}
+	
+	
 
 }

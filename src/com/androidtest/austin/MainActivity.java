@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 	Object object;
 	String[] questionArray;
 	Bundle gotBundle;
-	static ArrayList<String> questions, answers;
+	//static ArrayList<String> questions, answers;
 	Button[] levelButtons;
 	//public static boolean[] levelsLocked;
 	
@@ -55,8 +55,8 @@ public class MainActivity extends Activity {
 		showButton = (Button) findViewById(R.id.buttonShow);
 		pauseButton = (Button) findViewById(R.id.pauseButton);
 		display = (TextView) findViewById(R.id.textViewDisplay);
-		questions = new ArrayList<String>();
-		answers = new ArrayList<String>();
+		//questions = new ArrayList<String>();
+		//answers = new ArrayList<String>();
 		//final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		speed=2000;
 		//levelsLocked = new boolean[3];
@@ -83,7 +83,7 @@ public class MainActivity extends Activity {
 		levelStart= LevelSelectActivity.getLevel();
 		level=levelStart;
 		levelDisplay.setText("Level " + Integer.toString(level));
-		try {
+/*		try {
 			String question=reader.readLine();
 			while(question!=null){
 				 questions.add(question);
@@ -102,7 +102,7 @@ public class MainActivity extends Activity {
 			e2.printStackTrace();
 		}
 
-		
+		*/
 		showButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -211,13 +211,13 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	@Override
+/*	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.starting, menu);
 		return true;
 	}
-	
+*/	
 }
 
 

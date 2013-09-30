@@ -20,10 +20,10 @@ public class QuestionClass {
 	}
 	
 	public String getFirstEquation(){
-		question1 = rand.nextInt(10)+1;
+		question1 = rand.nextInt(20)+1;
 		int operationInt = rand.nextInt(firstOperation.size());
 		operation=firstOperation.get(operationInt);
-		question2 = rand.nextInt(10)+1;
+		question2 = rand.nextInt(20)+1;
 		switch(operationInt){
 			case 0:
 				answer = question1 + question2;
@@ -31,8 +31,8 @@ public class QuestionClass {
 			case 1:
 				if(question1<=question2){
 					while(question1<=question2){
-						question1 = rand.nextInt(10)+1;
-						question2 = rand.nextInt(10)+1;
+						question1 = rand.nextInt(20)+1;
+						question2 = rand.nextInt(20)+1;
 						answer = question1 - question2;
 					}
 				}
@@ -41,9 +41,11 @@ public class QuestionClass {
 				}
 				break;
 			case 2:
+				question2 = rand.nextInt(10)+1;
 				answer = question1 * question2;
 				break;
 			case 3:
+				//question2 = rand.nextInt(10)+1;
 				if(question1%question2!=0){
 					while(question1%question2!=0){
 						question1 = rand.nextInt(10)+1;
@@ -60,7 +62,7 @@ public class QuestionClass {
 	}
 	
 	public String getAdditionalEquation(){
-		question1 = rand.nextInt(10)+1;
+		question1 = rand.nextInt(20)+1;
 		int operationInt = rand.nextInt(operations.size());
 		operation = operations.get(operationInt);
 		switch(operationInt){
@@ -68,9 +70,9 @@ public class QuestionClass {
 			answer = answer + question1;
 			break;
 		case 1:
-			if(answer<question1 && answer!=0){
-				while(answer<question1){
-					question1 = rand.nextInt(10)+1;
+			if(answer<=question1){
+				while(answer<=question1){
+					question1 = rand.nextInt(20)+1;
 				}
 				answer = answer - question1;
 			}
@@ -79,9 +81,11 @@ public class QuestionClass {
 			}
 			break;
 		case 2:
+			question1 = rand.nextInt(10)+1;
 			answer = answer * question1;
 			break;
 		case 3:
+			//question1 = rand.nextInt(10)+1;
 			if(answer!=0 && answer%question1!=0 || answer<question1){
 				while(answer%question1!=0 || answer<question1){
 					question1 = rand.nextInt(10)+1;
