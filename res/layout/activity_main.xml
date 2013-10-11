@@ -12,16 +12,34 @@
 	<LinearLayout android:orientation = "horizontal" 
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
+	    android:weightSum="4"
 	    >
 	    
-    	<Button
-    	    android:id="@+id/pauseButton"
-        	style="?android:attr/buttonStyleSmall"
-        	android:layout_width="30dp"
-        	android:layout_height="30dp"
-        	android:background="@drawable/pausebutton"
-        	android:text=""
-        	android:visibility="gone" />
+    	<ImageView
+    	    android:id="@+id/life1"
+    	    android:layout_width="100dp"
+        	android:layout_height="match_parent"
+        	android:contentDescription="life image 1"
+        	android:layout_weight="1"
+        	android:src="@drawable/image_life"
+        	
+        	/>
+    	<ImageView
+    	    android:id="@+id/life2"
+        	android:contentDescription="life image 2"
+        	android:layout_width="100dp"
+        	android:layout_height="match_parent"
+        	android:src="@drawable/image_life"
+        	android:layout_weight="1"
+        	/>
+    	<ImageView
+    	    android:id="@+id/life3"
+        	android:contentDescription="life image 3"
+        	android:layout_width="100dp"
+        	android:layout_height="match_parent"
+        	android:src="@drawable/image_life"
+        	android:layout_weight="1"
+        	/>
 
     	<TextView
         	android:layout_width="fill_parent"
@@ -29,8 +47,9 @@
         	android:text="@string/level"
         	android:textSize="45sp"
         	android:layout_gravity="center"
-        	android:gravity = "center"
+        	android:gravity="center"
         	android:id="@+id/levelText"
+        	android:layout_weight="1"
         	></TextView>
     	
     </LinearLayout>

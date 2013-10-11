@@ -20,6 +20,7 @@ public class QuestionClass {
 	}
 	
 	public String getFirstEquation(){
+		answer=0;
 		question1 = rand.nextInt(20)+1;
 		int operationInt = rand.nextInt(firstOperation.size());
 		operation=firstOperation.get(operationInt);
@@ -41,6 +42,7 @@ public class QuestionClass {
 				}
 				break;
 			case 2:
+				question1=rand.nextInt(10)+1;
 				question2 = rand.nextInt(10)+1;
 				answer = question1 * question2;
 				break;

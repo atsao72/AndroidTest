@@ -53,44 +53,6 @@ public class AnswerInputDialogActivity extends Activity {
 		
 		// gotBundle = getIntent().getExtras();
 		// final int level = gotBundle.getInt("level");
-
-		/*timer = new Timer();
-		timer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				AnswerInputDialogActivity.this.finish();
-			}
-		}, 5000);
-
-		Handler handler = new Handler();
-	    Runnable r=new Runnable() {
-	    	@Override
-	        public void run() {
-	    		finish();
-	        }         
-	    };
-	    handler.postDelayed(r, 5000); 
-	     
-		Thread thread = new Thread() {
-			public void run() {
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						for (int i = 5; i > 0; i--) {
-							try {
-								sleep(1000);
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-							time.setText(Integer.toString(i));
-						}
-						
-					}
-				});
-			}
-		};
-		thread.start();
- */  
 		
 		mProgressBar=(ProgressBar)findViewById(R.id.progressbar);
 		mProgressBar.setProgress(i);
@@ -106,7 +68,23 @@ public class AnswerInputDialogActivity extends Activity {
 		        mProgressBar.setProgress(i);
 		        finish();
 				String message = "Too slow!";
-				MainActivity.showButton.setText("Retry");
+				MainActivity.triesLeft--;
+				switch(MainActivity.triesLeft){
+				case 2:
+					MainActivity.life1.setImageResource(R.drawable.minus_sign);
+					MainActivity.showButton.setText("Retry");
+					break;
+				case 1:
+					MainActivity.life2.setImageResource(R.drawable.minus_sign);
+					MainActivity.showButton.setText("Retry");
+					break;
+				case 0:
+					MainActivity.life3.setImageResource(R.drawable.minus_sign);
+					MainActivity.showButton.setText("New Equation");
+					MainActivity.triesLeft=3;
+					break;
+				}
+				//MainActivity.showButton.setText("Retry");
 				MainActivity.showButton.setVisibility(View.VISIBLE);
 				MainActivity.display.setText(message);
 		    }
@@ -128,6 +106,7 @@ public class AnswerInputDialogActivity extends Activity {
 				String message = "";
 				if (answer.equals(MainActivity.correct)) {
 					message = "Correct!";
+					MainActivity.triesLeft=3;
 					MainActivity.showButton.setText("Next level");
 					MainActivity.showButton.setVisibility(View.VISIBLE);
 					// levelButtons[level-1].setSaveEnabled(true);
@@ -136,7 +115,22 @@ public class AnswerInputDialogActivity extends Activity {
 					LevelSelectActivity.level++;
 				} else {
 					message = "Incorrect!";
-					MainActivity.showButton.setText("Retry");
+					MainActivity.triesLeft--;
+					switch(MainActivity.triesLeft){
+					case 2:
+						MainActivity.life1.setImageResource(R.drawable.minus_sign);
+						MainActivity.showButton.setText("Retry");
+						break;
+					case 1:
+						MainActivity.life2.setImageResource(R.drawable.minus_sign);
+						MainActivity.showButton.setText("Retry");
+						break;
+					case 0:
+						MainActivity.life3.setImageResource(R.drawable.minus_sign);
+						MainActivity.showButton.setText("New Equation");
+						MainActivity.triesLeft=3;
+						break;
+					}
 					MainActivity.showButton.setVisibility(View.VISIBLE);
 				}
 				MainActivity.display.setText(message);

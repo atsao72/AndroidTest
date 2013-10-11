@@ -14,13 +14,11 @@ import android.widget.Button;
 
 public class MenuActivity extends Activity {
 
-	//this is a comment to test the commit thing
-	
 	Button startButton;
 	Button howToButton;
 	Button optionsButton;
 	Button levelButton;
-	public static boolean[] levelsLocked = new boolean[8];
+	public static boolean[] levelsLocked = new boolean[20];
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
