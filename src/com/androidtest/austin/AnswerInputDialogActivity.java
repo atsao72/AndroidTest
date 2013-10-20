@@ -109,7 +109,6 @@ public class AnswerInputDialogActivity extends Activity {
 					MainActivity.triesLeft=3;
 					MainActivity.showButton.setText("Next level");
 					MainActivity.showButton.setVisibility(View.VISIBLE);
-					// levelButtons[level-1].setSaveEnabled(true);
 					MenuActivity.levelsLocked[MainActivity.level - 1] = true;
 					MainActivity.level++;
 					LevelSelectActivity.level++;
@@ -144,6 +143,7 @@ public class AnswerInputDialogActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onPause();
 		mCountDownTimer.cancel();
+		finish();
 		//MainActivity.showButton.setText("Retry");
 		//MainActivity.showButton.setVisibility(View.VISIBLE);
 	}

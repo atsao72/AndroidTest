@@ -6,27 +6,28 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 
 public class Splash extends Activity {
-//this is a comment to test github again
-	MediaPlayer ourSong;
+
+	//MediaPlayer ourSong;
+	Thread splashTimer;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_splash);
 		
-		ourSong = MediaPlayer.create(Splash.this, R.raw.rooksoundclip);
-		ourSong.start();
+		//ourSong = MediaPlayer.create(Splash.this, R.raw.rooksoundclip);
+		//ourSong.start();
 		
-		Thread splashTimer = new Thread(){
+		splashTimer = new Thread(){
 			public void run(){
 				try{
-					
-					sleep(4000);
-					
+					sleep(3000);
 				} catch (InterruptedException e){
 					e.printStackTrace();
 				}finally{
 					Intent openMenu = new Intent("com.androidtest.austin.MENU");
+					openMenu.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
+					openMenu.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 					startActivity(openMenu);
 				}
 			}
@@ -39,7 +40,8 @@ public class Splash extends Activity {
 	protected void onPause() {
 		// TODO Auto-generated method stub
 		super.onPause();
-		ourSong.release();
+		//ourSong.release();
+		splashTimer.interrupt();
 		finish();
 	}
 

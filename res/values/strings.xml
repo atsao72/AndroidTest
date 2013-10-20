@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="start">Start</string>
     <string name="level"></string>
+    <string name="HowTo">You will be shown an initial equation, such as: \n 5+2 \n Keep the answer, 7, in mind.</string>
 
 </resources>

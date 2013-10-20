@@ -241,5 +241,11 @@ public class LevelSelectActivity extends Activity{
 	public static int getLevel(){
 		return level;
 	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		finish();
+	}
 		
 }

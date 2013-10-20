@@ -1,6 +1,9 @@
 package com.androidtest.austin;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,6 +15,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -90,12 +94,12 @@ public class MainActivity extends Activity {
 		level=levelStart;
 		levelDisplay.setText("Level " + Integer.toString(level));
 
-		qClass = new QuestionClass(level);
+		
 		showButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				//speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
-				
+				qClass = new QuestionClass(level);
 				levelDisplay.setText("Level " + Integer.toString(level));
 				showButton.setVisibility(View.INVISIBLE);
 				//questionArray=questions.get(level-1).split("&");
@@ -127,6 +131,7 @@ public class MainActivity extends Activity {
 								//speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
 								if(triesLeft==3){
 									getNextQuestions();
+									correct=qClass.getAnswer();
 								}
 								final String question = questions.get(i);
 								runOnUiThread(new Runnable() {
@@ -146,7 +151,7 @@ public class MainActivity extends Activity {
 						runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
-								correct=qClass.getAnswer();
+								
 								Intent intent = new Intent(MainActivity.this, AnswerInputDialogActivity.class);
 								//Bundle bundle = new Bundle();
 								//bundle.putInt("level", level);
@@ -198,6 +203,13 @@ public class MainActivity extends Activity {
 			//Intent intent = new Intent("com.mathchallenge.rook.PAUSEMENU");
 			//intent.putExtra("caller", "StartingActivity");
 			//startActivity(intent);
+			
+			/*String FILENAME = "level_file";
+			int level = MainActivity.level;
+
+			FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+			fos.write(level);
+			fos.close();*/
 		}
 	}
 	

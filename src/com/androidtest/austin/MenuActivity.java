@@ -56,7 +56,7 @@ public class MenuActivity extends Activity {
 	howToButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
+			/*AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
 			alert.setTitle("How To Play");
 			alert.setMessage("Each operation will show for 4 seconds. At the end, input the answer");
 			alert.setNeutralButton("OK", new DialogInterface.OnClickListener() {
@@ -64,7 +64,9 @@ public class MenuActivity extends Activity {
 				public void onClick(DialogInterface dialog, int which) {
 				}
 			});
-			alert.show();
+			alert.show();*/
+			Intent howTo = new Intent("com.androidtest.austin.HowTo");
+			startActivity(howTo);
 		}
 	});
 	
@@ -84,6 +86,6 @@ public class MenuActivity extends Activity {
 		}
 	});
 	
-
 	}
+
 }
