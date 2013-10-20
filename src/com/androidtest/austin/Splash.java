@@ -6,7 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 
 public class Splash extends Activity {
-
+//this is a comment to test github again
 	MediaPlayer ourSong;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
