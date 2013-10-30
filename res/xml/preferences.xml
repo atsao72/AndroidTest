@@ -5,7 +5,11 @@
         android:title="Reset"
         android:key = "reset"
         android:summary = "Reset all data"
-    />    
-    
+    />
+    <Preference
+        android:title="Email the developer"
+        android:key = "email"
+        android:summary = "rook.customerservice@gmail.com"
+    />
 
 </PreferenceScreen>

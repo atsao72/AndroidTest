@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    >
     
 	<LinearLayout android:orientation="horizontal"
 	    android:layout_width="fill_parent"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginTop="20dp"
-	    android:weightSum="100">
+	    android:layout_height="0dp"
+	    android:layout_marginTop="15dp"
+	    android:layout_weight="1">
 	    
 	    <Button
         	android:id="@+id/l1Button"
@@ -16,12 +17,12 @@
        		android:textStyle="bold"
         	android:textColor="#000000"
         	android:textSize="20dp"
-        	android:layout_width="wrap_content"
+        	android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
 			android:layout_marginLeft="20dp"
         	android:layout_marginRight="20dp"
-        	android:text="1" 
-        	android:layout_weight="25"/>
+        	android:text="1"/>
 
     	<Button
         	android:id="@+id/l2Button"
@@ -30,11 +31,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-	        android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
+	        android:layout_width="0dp"
+        	android:layout_height="wrap_content"
     	    android:layout_marginRight="20dp"
         	android:text="2" 
-        	android:layout_weight="25"/>
+        	android:layout_weight="1"/>
 
 	    <Button
     	    android:id="@+id/l3Button"
@@ -43,11 +44,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-       		android:layout_width="wrap_content"
+       		android:layout_width="0dp"
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
         	android:text="3" 
-        	android:layout_weight="25"/>
+        	android:layout_weight="1"/>
 
     	<Button
         	android:id="@+id/l4Button"
@@ -56,19 +57,18 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-        	android:layout_width="wrap_content"
+        	android:layout_width="0dp"
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
         	android:text="4" 
-        	android:layout_weight="25"/>
+        	android:layout_weight="1"/>
     	
     	</LinearLayout>
     	
     	<LinearLayout android:orientation="horizontal"
 	    android:layout_width="fill_parent"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginTop="20dp"
-	    android:weightSum="100">
+	    android:layout_height = "0dp"
+	    android:layout_weight="1">
 	    
 	    <Button
         	android:id="@+id/l5Button"
@@ -76,12 +76,13 @@
        		android:textStyle="bold"
         	android:textColor="#000000"
         	android:textSize="20dp"
-        	android:layout_width="wrap_content"
+        	android:enabled="false"
+        	android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
 			android:layout_marginLeft="20dp"
         	android:layout_marginRight="20dp"
-        	android:text="5" 
-        	android:layout_weight="25"/>
+        	android:text="5" />
 
     	<Button
         	android:id="@+id/l6Button"
@@ -90,11 +91,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-	        android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
+	        android:layout_width="0dp"
+        	android:layout_weight="1"
+        	android:layout_height="wrap_content"
     	    android:layout_marginRight="20dp"
-        	android:text="6" 
-        	android:layout_weight="25"/>
+        	android:text="6" />
 
 	    <Button
     	    android:id="@+id/l7Button"
@@ -103,11 +104,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-       		android:layout_width="wrap_content"
+       		android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
-        	android:text="7" 
-        	android:layout_weight="25"/>
+        	android:text="7" />
 
     	<Button
         	android:id="@+id/l8Button"
@@ -116,19 +117,18 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-        	android:layout_width="wrap_content"
+			android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
-        	android:text="8" 
-        	android:layout_weight="25"/>
+        	android:text="8" />
     	
     	</LinearLayout>
 
 		<LinearLayout android:orientation="horizontal"
 	    android:layout_width="fill_parent"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginTop="20dp"
-	    android:weightSum="100">
+	    android:layout_height = "0dp"
+	    android:layout_weight="1">
 	    
 	    <Button
         	android:id="@+id/l9Button"
@@ -136,12 +136,13 @@
        		android:textStyle="bold"
         	android:textColor="#000000"
         	android:textSize="20dp"
-        	android:layout_width="wrap_content"
+        	android:enabled="false"
+        	android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
 			android:layout_marginLeft="20dp"
         	android:layout_marginRight="20dp"
-        	android:text="9" 
-        	android:layout_weight="25"/>
+        	android:text="9" />
 
     	<Button
         	android:id="@+id/l10Button"
@@ -150,11 +151,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-	        android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
+	       	android:layout_width="0dp"
+        	android:layout_weight="1"
+        	android:layout_height="wrap_content"
     	    android:layout_marginRight="20dp"
-        	android:text="10" 
-        	android:layout_weight="25"/>
+        	android:text="10" />
 
 	    <Button
     	    android:id="@+id/l11Button"
@@ -163,11 +164,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-       		android:layout_width="wrap_content"
+       		android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
-        	android:text="11" 
-        	android:layout_weight="25"/>
+        	android:text="11" />
 
     	<Button
         	android:id="@+id/l12Button"
@@ -176,19 +177,18 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-        	android:layout_width="wrap_content"
+        	android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
-        	android:text="12" 
-        	android:layout_weight="25"/>
+        	android:text="12" />
 
     	</LinearLayout>
     	
 		<LinearLayout android:orientation="horizontal"
 	    android:layout_width="fill_parent"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginTop="20dp"
-	    android:weightSum="100">
+	    android:layout_height = "0dp"
+	    android:layout_weight="1">
 	    
 	    <Button
         	android:id="@+id/l13Button"
@@ -196,12 +196,13 @@
        		android:textStyle="bold"
         	android:textColor="#000000"
         	android:textSize="20dp"
-        	android:layout_width="wrap_content"
+        	android:enabled="false"
+        	android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
 			android:layout_marginLeft="20dp"
         	android:layout_marginRight="20dp"
-        	android:text="13" 
-        	android:layout_weight="25"/>
+        	android:text="13" />
 
     	<Button
         	android:id="@+id/l14Button"
@@ -210,11 +211,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-	        android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
+	        android:layout_width="0dp"
+        	android:layout_weight="1"
+        	android:layout_height="wrap_content"
     	    android:layout_marginRight="20dp"
-        	android:text="14" 
-        	android:layout_weight="25"/>
+        	android:text="14" />
 
 	    <Button
     	    android:id="@+id/l15Button"
@@ -223,11 +224,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-       		android:layout_width="wrap_content"
+       		android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
-        	android:text="15" 
-        	android:layout_weight="25"/>
+        	android:text="15" />
 
     	<Button
         	android:id="@+id/l16Button"
@@ -236,19 +237,18 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-        	android:layout_width="wrap_content"
+        	android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
-        	android:text="16" 
-        	android:layout_weight="25"/>
+        	android:text="16" />
     	
     	</LinearLayout>
     	
 		<LinearLayout android:orientation="horizontal"
 	    android:layout_width="fill_parent"
-	    android:layout_height = "wrap_content"
-	    android:layout_marginTop="20dp"
-	    android:weightSum="100">
+	    android:layout_height = "0dp"
+	    android:layout_weight="1">
 	    
 	    <Button
         	android:id="@+id/l17Button"
@@ -256,12 +256,13 @@
        		android:textStyle="bold"
         	android:textColor="#000000"
         	android:textSize="20dp"
-        	android:layout_width="wrap_content"
+        	android:enabled="false"
+        	android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
 			android:layout_marginLeft="20dp"
         	android:layout_marginRight="20dp"
-        	android:text="17" 
-        	android:layout_weight="25"/>
+        	android:text="17" />
 
     	<Button
         	android:id="@+id/l18Button"
@@ -270,11 +271,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-	        android:layout_width="wrap_content"
-    	    android:layout_height="wrap_content"
+	        android:layout_width="0dp"
+        	android:layout_weight="1"
+        	android:layout_height="wrap_content"
     	    android:layout_marginRight="20dp"
-        	android:text="18" 
-        	android:layout_weight="25"/>
+        	android:text="18" />
 
 	    <Button
     	    android:id="@+id/l19Button"
@@ -283,11 +284,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-       		android:layout_width="wrap_content"
+       		android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
-        	android:text="19" 
-        	android:layout_weight="25"/>
+        	android:text="19" />
 
     	<Button
         	android:id="@+id/l20Button"
@@ -296,11 +297,11 @@
         	android:textColor="#000000"
         	android:textSize="20dp"
         	android:enabled="false"
-        	android:layout_width="wrap_content"
+        	android:layout_width="0dp"
+        	android:layout_weight="1"
         	android:layout_height="wrap_content"
         	android:layout_marginRight="20dp"
-        	android:text="20" 
-        	android:layout_weight="25"/>
+        	android:text="20" />
     	
     	</LinearLayout>
     	

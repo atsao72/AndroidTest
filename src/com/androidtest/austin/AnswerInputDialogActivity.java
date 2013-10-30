@@ -39,16 +39,6 @@ public class AnswerInputDialogActivity extends Activity {
 		buttonYes = (Button) findViewById(R.id.okButton);
 		userInput = (EditText) findViewById(R.id.input);
 
-		//userInput.setInputType(InputType.TYPE_CLASS_NUMBER);
-		//userInput.setRawInputType(Configuration.KEYBOARD_QWERTY);
-		/*userInput.setOnFocusChangeListener( new View.OnFocusChangeListener() {
-		    @Override
-		    public void onFocusChange(View v, boolean hasFocus) {
-		        if (hasFocus) {
-		            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-		        }
-		    }
-		});*/
 		userInput.setRawInputType(Configuration.KEYBOARD_12KEY);
 		
 		// gotBundle = getIntent().getExtras();
@@ -109,7 +99,7 @@ public class AnswerInputDialogActivity extends Activity {
 					MainActivity.triesLeft=3;
 					MainActivity.showButton.setText("Next level");
 					MainActivity.showButton.setVisibility(View.VISIBLE);
-					MenuActivity.levelsLocked[MainActivity.level - 1] = true;
+					//MenuActivity.levelsLocked[MainActivity.level - 1] = true;
 					MainActivity.level++;
 					LevelSelectActivity.level++;
 				} else {

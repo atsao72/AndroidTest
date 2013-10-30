@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class LevelSelectActivity extends Activity{
+public class LevelSelectActivity extends Activity implements View.OnClickListener{
 
 	private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button13, button14, 
 	button15, button16, button17, button18, button19, button20;
-	public static int level=1;
+	public static int level;
 	private Button[] buttons;
 	
 	@Override
@@ -27,225 +27,100 @@ public class LevelSelectActivity extends Activity{
 		button16 = (Button) findViewById(R.id.l16Button); button17 = (Button) findViewById(R.id.l17Button); button18 = (Button) findViewById(R.id.l18Button);
 		button19 = (Button) findViewById(R.id.l19Button); button20 = (Button) findViewById(R.id.l20Button);
 		
-		buttons = new Button[]{button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button13, button14, 
+		buttons = new Button[]{button1,button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button13, button14, 
 				button15, button16, button17, button18, button19, button20};
 		
-		for(int i=0;i<buttons.length;i++){
+		if(level==-1||level==0){
+			level=1;
+		}
+		
+		int i=0;
+		while(i<level){
+			buttons[i].setEnabled(true);
+			i++;
+		}
+		/*for(int i=0;i<buttons.length;i++){
 			buttons[i].setEnabled(MenuActivity.levelsLocked[i]);
 		}
 		
 		button1.setEnabled(true);
-		
-		button1.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=1;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button2.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=2;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button3.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=3;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button4.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=4;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button5.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=5;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button6.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=6;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button7.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=7;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button8.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=8;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button9.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=9;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button10.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=10;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button11.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=11;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button12.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=12;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button13.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=13;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button14.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=14;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button15.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=15;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button16.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=16;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button17.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=17;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button18.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=18;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button19.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=19;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
-		button20.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				level=20;
-				Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
-				startActivity(startActivity);
-				finish();
-			}
-		});
-		
+		*/
+		for(int j=0;j<buttons.length;j++){
+			buttons[j].setOnClickListener(this);
+		}
 	}
 	
-	public static int getLevel(){
-		return level;
+	@Override
+	public void onClick(View v) {
+		switch(v.getId()){
+		case R.id.l1Button:
+			level=1;
+			break;
+		case R.id.l2Button:
+			level=2;
+			break;
+		case R.id.l3Button:
+			level=3;
+			break;
+		case R.id.l4Button:
+			level=4;
+			break;
+		case R.id.l5Button:
+			level=5;
+			break;
+		case R.id.l6Button:
+			level=6;
+			break;
+		case R.id.l7Button:
+			level=7;
+			break;
+		case R.id.l8Button:
+			level=8;
+			break;
+		case R.id.l9Button:
+			level=9;
+			break;
+		case R.id.l10Button:
+			level=10;
+			break;
+		case R.id.l11Button:
+			level=11;
+			break;
+		case R.id.l12Button:
+			level=12;
+			break;
+		case R.id.l13Button:
+			level=13;
+			break;
+		case R.id.l14Button:
+			level=14;
+			break;
+		case R.id.l15Button:
+			level=15;
+			break;
+		case R.id.l16Button:
+			level=16;
+			break;
+		case R.id.l17Button:
+			level=17;
+			break;
+		case R.id.l18Button:
+			level=18;
+			break;
+		case R.id.l19Button:
+			level=19;
+			break;
+		case R.id.l20Button:
+			level=20;
+			break;
+		}
+		Intent startActivity = new Intent("com.androidtest.austin.MAINACTIVITY");
+		startActivity(startActivity);
+		finish();
 	}
-	
 	@Override
 	protected void onPause() {
 		super.onPause();
 		finish();
 	}
-		
 }

@@ -66,7 +66,7 @@ public class QuestionClass {
 			break;
 		case 1:
 			if(level<10){
-				while(answer<=question1){
+				while(answer<question1){
 					question1 = rand.nextInt(answer)+1;
 				}
 				answer = answer - question1;

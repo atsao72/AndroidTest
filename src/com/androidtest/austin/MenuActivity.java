@@ -18,7 +18,7 @@ public class MenuActivity extends Activity {
 	Button howToButton;
 	Button optionsButton;
 	Button levelButton;
-	public static boolean[] levelsLocked = new boolean[20];
+	//public static boolean[] levelsLocked = new boolean[20];
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +27,7 @@ public class MenuActivity extends Activity {
 		startButton = (Button) findViewById(R.id.startButton);
 		levelButton = (Button) findViewById(R.id.levelSelectButton);
 		howToButton = (Button) findViewById(R.id.howToButton);
-		optionsButton = (Button) findViewById(R.id.optionsButton);
-		final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		optionsButton = (Button) findViewById(R.id.PrefsButton);
 		
 		/*for(int i=0;i<levelsLocked.length;i++){
 			levelsLocked[i]=false;
@@ -40,32 +39,20 @@ public class MenuActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			Intent startGame = new Intent("com.androidtest.austin.MAINACTIVITY");
-			int time = Integer.parseInt(getPrefs.getString("speedList", "3000"));
-			LevelSelectActivity activity= new LevelSelectActivity();
-			int level = activity.getLevel();
-			Bundle bundleLevel = new Bundle();
-			bundleLevel.putInt("level", level);
-			Bundle bundle = new Bundle();
-			bundle.putInt("time", time);
-			startGame.putExtras(bundle);
-			startGame.putExtras(bundleLevel);
-			startActivity(startGame);
+			if(LevelSelectActivity.level>Splash.MAX_LEVELS){
+				Intent finish = new Intent(MenuActivity.this, FinishedActivity.class);
+				startActivity(finish);					
+			}
+			else{
+				startActivity(startGame);
+			}
 		}
 	});
 	
 	howToButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			/*AlertDialog.Builder alert = new AlertDialog.Builder(MenuActivity.this);
-			alert.setTitle("How To Play");
-			alert.setMessage("Each operation will show for 4 seconds. At the end, input the answer");
-			alert.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-				}
-			});
-			alert.show();*/
-			Intent howTo = new Intent("com.androidtest.austin.HowTo");
+			Intent howTo = new Intent("com.androidtest.austin.HOWTO");
 			startActivity(howTo);
 		}
 	});
@@ -81,8 +68,8 @@ public class MenuActivity extends Activity {
 	optionsButton.setOnClickListener(new View.OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			Intent openOptions = new Intent("com.androidtest.austin.PREFERENCES");
-			startActivity(openOptions);
+			Intent optionsIntent = new Intent("com.androidtest.austin.PREFERENCES");
+			startActivity(optionsIntent);
 		}
 	});
 	

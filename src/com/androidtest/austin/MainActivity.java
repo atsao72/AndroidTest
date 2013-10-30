@@ -1,12 +1,11 @@
 package com.androidtest.austin;
 
-import java.io.BufferedReader;
+
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import com.androidtest.austin.R;
@@ -35,9 +34,6 @@ public class MainActivity extends Activity {
 	static TextView display, levelDisplay;
 	//String answer, correct;
 	static String correct;
-	InputStreamReader inputStreamReader, answerInputStreamReader;
-	BufferedReader reader, answerReader;
-	InputStream is, answerIs;
 	Thread timer;
 	static int level, triesLeft;
 	int speed, levelStart;
@@ -71,33 +67,26 @@ public class MainActivity extends Activity {
 		//levelsLocked = new boolean[3];
 		triesLeft=3;
 		
-		AssetManager am = getAssets();
-		try {
-			is = am.open("Math questions.txt");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		inputStreamReader = new InputStreamReader(is);
-		reader = new BufferedReader(inputStreamReader);
-
-		try {
-			answerIs = am.open("answers.txt");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		answerInputStreamReader = new InputStreamReader(answerIs);
-		answerReader = new BufferedReader(answerInputStreamReader);
-		
 		//gotBundle = getIntent().getExtras();
 		//levelStart = gotBundle.getInt("level");
-		levelStart= LevelSelectActivity.getLevel();
+		if(LevelSelectActivity.level==0||LevelSelectActivity.level==-1){
+			levelStart=1;
+		}
+		else{
+			levelStart= LevelSelectActivity.level;
+		}
 		level=levelStart;
 		levelDisplay.setText("Level " + Integer.toString(level));
 
-		
 		showButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				if(level>Splash.MAX_LEVELS){
+					finish();
+					Intent finish = new Intent(MainActivity.this, FinishedActivity.class);
+					startActivity(finish);					
+				}
+				else{
 				//speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
 				qClass = new QuestionClass(level);
 				levelDisplay.setText("Level " + Integer.toString(level));
@@ -111,10 +100,9 @@ public class MainActivity extends Activity {
 					life3.setImageResource(R.drawable.image_life);
 					getQuestion1();
 				}
-				if(level%5==0&&speed!=1000&&triesLeft==3){
+				if(level%10==0&&speed!=1000&&triesLeft==3){
 					speed=speed-1000;
 				}
-				//display.setText(qClass.getFirstEquation());
 				display.setText(questions.get(0));
 				
 				timer = new Thread() {
@@ -164,6 +152,7 @@ public class MainActivity extends Activity {
 					}
 				};
 				timer.start();
+				}
 			}
 		});
 		
@@ -179,6 +168,15 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
+		try {
+			Splash.fos = openFileOutput(Splash.FILENAME, Context.MODE_PRIVATE);
+			Splash.fos.write(level);
+			Splash.fos.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		pause();
 	}
 
@@ -200,16 +198,6 @@ public class MainActivity extends Activity {
 		super.onPause();
 		synchronized(object){
 			paused=true;
-			//Intent intent = new Intent("com.mathchallenge.rook.PAUSEMENU");
-			//intent.putExtra("caller", "StartingActivity");
-			//startActivity(intent);
-			
-			/*String FILENAME = "level_file";
-			int level = MainActivity.level;
-
-			FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-			fos.write(level);
-			fos.close();*/
 		}
 	}
 	
@@ -222,6 +210,22 @@ public class MainActivity extends Activity {
 		}
 	}
 	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		try {
+			Splash.fos = openFileOutput(Splash.FILENAME, Context.MODE_PRIVATE);
+			Splash.fos.write(level);
+			Splash.fos.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		finish();
+	}
+
+
 	public static void getQuestion1(){
 		//QuestionClass qClass = new QuestionClass(level);
 		questions.clear();
@@ -233,13 +237,6 @@ public class MainActivity extends Activity {
 		questions.add(qClass.getAdditionalEquation());
 	}
 
-/*	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.starting, menu);
-		return true;
-	}
-*/	
 }
 
 

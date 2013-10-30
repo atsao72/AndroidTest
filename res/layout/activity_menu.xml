@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:weightSum="5">
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop = "30dp"
+        android:layout_marginTop = "25dp"
         android:textColor = "#FF8000"
         android:textSize = "40dp"
         android:text="Math Challenge"
@@ -20,48 +19,44 @@
     <ImageView
         android:id="@+id/image"
         android:contentDescription="image"
-        android:layout_width="174dp"
-        android:layout_height="156dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
         android:src="@drawable/math1"
-        android:layout_weight="1"/>
+        android:layout_weight="5"/>
 
     <Button
         android:id="@+id/startButton"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="30dp"
         android:text="Start game" 
         android:layout_weight="1"/>
 
     <Button
         android:id="@+id/howToButton"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:text="How To Play" 
-        android:layout_marginTop="35dp"
         android:layout_weight="1"/>
     
 	<Button
         android:id="@+id/levelSelectButton"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="30dp"
         android:text="Level Select" 
         android:layout_weight="1"/>
-
-    <Button
-        android:id="@+id/optionsButton"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
+	<Button
+        android:id="@+id/PrefsButton"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_marginTop="35dp"
+        android:layout_marginBottom="30dp"
         android:text="Options" 
-        android:visibility="gone"/>
+        android:layout_weight="1"/>
+
     
 </LinearLayout>
