@@ -7,6 +7,8 @@
     <string name="start">Start</string>
     <string name="level"></string>
     <string name="HowTo">You will be shown an initial equation, such as: \n 5+2 \n Keep the answer, 7, in mind.</string>
-    <string name="finished">Congratulations! You\'ve finished! Come back soon for more levels!</string>
+    <string name="finished">You\'ve finished! Come back soon for more levels or reset to try to beat your score!</string>
+    <string name="score">Score:</string>
+    <string name="Level_Set">Set </string>
 
 </resources>

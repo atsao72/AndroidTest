@@ -6,11 +6,14 @@ import java.util.TimerTask;
 import com.androidtest.austin.R;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -30,11 +33,16 @@ public class AnswerInputDialogActivity extends Activity {
 	ProgressBar mProgressBar;
 	CountDownTimer mCountDownTimer;
 	int i=100;
+	private int total, counter;
+	boolean soundOn;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_answer_input);
+		final MediaPlayer buzzerSound = MediaPlayer.create(AnswerInputDialogActivity.this, R.raw.buzzer);
+		final MediaPlayer incorrectSound = MediaPlayer.create(AnswerInputDialogActivity.this, R.raw.wrong);
+		final MediaPlayer correctSound = MediaPlayer.create(AnswerInputDialogActivity.this, R.raw.bell);
 
 		buttonYes = (Button) findViewById(R.id.okButton);
 		userInput = (EditText) findViewById(R.id.input);
@@ -43,6 +51,8 @@ public class AnswerInputDialogActivity extends Activity {
 		
 		// gotBundle = getIntent().getExtras();
 		// final int level = gotBundle.getInt("level");
+		SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+		soundOn = getPrefs.getBoolean("sound", true);
 		
 		mProgressBar=(ProgressBar)findViewById(R.id.progressbar);
 		mProgressBar.setProgress(i);
@@ -57,6 +67,8 @@ public class AnswerInputDialogActivity extends Activity {
 		      	i--;
 		        mProgressBar.setProgress(i);
 		        finish();
+		        if(soundOn)
+		        	buzzerSound.start();	
 				String message = "Too slow!";
 				MainActivity.triesLeft--;
 				switch(MainActivity.triesLeft){
@@ -81,9 +93,25 @@ public class AnswerInputDialogActivity extends Activity {
 		};
 		mCountDownTimer.start();
 		
+		
 		buttonYes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				final int start = MainActivity.score;
+				int k=0;
+				switch(MainActivity.triesLeft){
+				case 3:
+					k=15;
+					break;
+				case 2:
+					k=10;
+					break;
+				case 1:
+					k=5;
+					break;
+				}
+				total=0; 
+				counter = start;
 				mCountDownTimer.cancel();
 				//String correct = "";
 				String answer = userInput.getText().toString();
@@ -95,6 +123,13 @@ public class AnswerInputDialogActivity extends Activity {
 				}
 				String message = "";
 				if (answer.equals(MainActivity.correct)) {
+					MainActivity.score+=((i/10)+2+k);
+					if(MainActivity.score<0){
+						MainActivity.score=0;
+					}
+					if(soundOn)
+						correctSound.start();
+					total=MainActivity.score;
 					message = "Correct!";
 					MainActivity.triesLeft=3;
 					MainActivity.showButton.setText("Next level");
@@ -103,8 +138,15 @@ public class AnswerInputDialogActivity extends Activity {
 					MainActivity.level++;
 					LevelSelectActivity.level++;
 				} else {
+					if(soundOn)
+						incorrectSound.start();
 					message = "Incorrect!";
 					MainActivity.triesLeft--;
+					MainActivity.score-=((3-MainActivity.triesLeft)*5);
+					if(MainActivity.score<0){
+						MainActivity.score=0;
+					}
+					total=MainActivity.score;
 					switch(MainActivity.triesLeft){
 					case 2:
 						MainActivity.life1.setImageResource(R.drawable.minus_sign);
@@ -123,6 +165,42 @@ public class AnswerInputDialogActivity extends Activity {
 					MainActivity.showButton.setVisibility(View.VISIBLE);
 				}
 				MainActivity.display.setText(message);
+			
+			    new Thread(new Runnable() {
+		            public void run() {
+		            	if(counter<total){
+		            		while (counter < total) {
+		            			try {
+		            				Thread.sleep(50);
+		            			} catch (InterruptedException e) {
+		            				e.printStackTrace();
+		            			}
+		            			MainActivity.scoreDisplay.post(new Runnable() {
+		            				public void run() {
+		            					MainActivity.scoreDisplay.setText("Score: " + Integer.toString(counter));
+		            				}
+		            			});
+		            			counter++;
+		            		}
+		            	}
+		            	else{
+		            		while (counter > total) {
+		            			try {
+		            				Thread.sleep(50);
+		            			} catch (InterruptedException e) {
+		            				e.printStackTrace();
+		            			}
+		            			MainActivity.scoreDisplay.post(new Runnable() {
+		            				public void run() {
+		            					MainActivity.scoreDisplay.setText("Score: " + Integer.toString(counter));
+		            				}
+		            			});
+		            			counter--;
+		            		}
+		            	}
+		            }
+		        }).start();
+				//MainActivity.scoreDisplay.setText("Score: " + Integer.toString(MainActivity.score));
 				finish();
 			}
 		});

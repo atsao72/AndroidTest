@@ -1,26 +1,56 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8" ?> 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/messageText"
-        android:layout_width = "wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="@string/finished"/>
-
-    <TextView
-        android:id="@+id/emailText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Click here to email the developer" 
-        android:layout_alignParentBottom="true"
-        android:textSize="20dp"
-        android:layout_marginBottom="50dp"
-        android:layout_centerHorizontal="true"/>
-
-</RelativeLayout>
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:background="@drawable/background">
+    
+  <TextView android:id="@+id/congratsText" 
+      android:paddingLeft="10dp" 
+      android:paddingRight="10dp" 
+      android:paddingTop="100dp"
+      android:layout_weight="15" 
+      android:layout_width="wrap_content" 
+      android:layout_height="wrap_content" 
+      android:textSize="40dp" 
+      android:textColor="#FF8000" 
+      android:gravity="center" 
+      android:text="Congratulations!" />
+   
+  <TextView android:id="@+id/messageText" 
+      android:paddingLeft="10dp" 
+      android:paddingRight="10dp" 
+      android:paddingBottom="60dp" 
+      android:layout_weight="50"
+      android:layout_width="wrap_content" 
+      android:layout_height="wrap_content" 
+      android:textSize="25dp" 
+      android:gravity="center" 
+      android:text="@string/finished" />
+  
+  <TextView android:id="@+id/scoreText" 
+      android:paddingLeft="10dp" 
+      android:paddingRight="10dp" 
+      android:paddingBottom="80dp" 
+      android:layout_weight="25"
+      android:layout_width="wrap_content" 
+      android:layout_height="wrap_content" 
+      android:textSize="25dp"
+      android:textColor="#00E500"
+      android:gravity="center"
+      android:layout_gravity="center"
+      android:text="Score: " />
+   
+  <TextView android:id="@+id/emailText" 
+      android:paddingLeft="10dp" 
+      android:paddingRight="10dp" 
+      android:layout_weight="10"
+      android:layout_width="wrap_content" 
+      android:layout_height="wrap_content" 
+      android:textColor="#0000FF" 
+      android:text="Click here to email the developer" 
+      android:textSize="20dp" 
+      android:layout_marginBottom="50dp" /> 
+      
+  </LinearLayout>

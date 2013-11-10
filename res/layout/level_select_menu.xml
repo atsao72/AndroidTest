@@ -2,307 +2,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" 
-    >
+    android:orientation="vertical"
+    android:background="@drawable/background">
     
+    <RelativeLayout android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height = "0dp"
+	    android:layout_weight="1"
+	    android:id="@+id/layoutTop">
+	    
+    	<TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:text="@string/Level_Set"
+        android:textSize="50dp"
+        android:textColor="#FF8000"
+        android:id="@+id/levelSetText"/>
+    	
+    <Button android:id="@+id/bNextSet"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content" 
+        android:text = "Next Level Set"
+        android:textSize="10dp"
+        android:enabled="false"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"/>
+    </RelativeLayout>
+     
 	<LinearLayout android:orientation="horizontal"
 	    android:layout_width="fill_parent"
-	    android:layout_height="0dp"
-	    android:layout_marginTop="15dp"
-	    android:layout_weight="1">
-	    
-	    <Button
-        	android:id="@+id/l1Button"
-       		android:background="@drawable/custom"
-       		android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-			android:layout_marginLeft="20dp"
-        	android:layout_marginRight="20dp"
-        	android:text="1"/>
-
-    	<Button
-        	android:id="@+id/l2Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-	        android:layout_width="0dp"
-        	android:layout_height="wrap_content"
-    	    android:layout_marginRight="20dp"
-        	android:text="2" 
-        	android:layout_weight="1"/>
-
-	    <Button
-    	    android:id="@+id/l3Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-       		android:layout_width="0dp"
-        	android:layout_height="wrap_content"
-        	android:layout_marginRight="20dp"
-        	android:text="3" 
-        	android:layout_weight="1"/>
-
-    	<Button
-        	android:id="@+id/l4Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-        	android:layout_width="0dp"
-        	android:layout_height="wrap_content"
-        	android:layout_marginRight="20dp"
-        	android:text="4" 
-        	android:layout_weight="1"/>
-    	
+	    android:layout_height = "0dp"
+	    android:layout_weight="1"
+	    android:id="@+id/layout1">
     	</LinearLayout>
-    	
+    <LinearLayout android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height = "0dp"
+	    android:layout_weight="1"
+	    android:id="@+id/layout2">
+    	</LinearLayout>
+    <LinearLayout android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height = "0dp"
+	    android:layout_weight="1"
+	    android:id="@+id/layout3">
+    	</LinearLayout>
+    <LinearLayout android:orientation="horizontal"
+	    android:layout_width="fill_parent"
+	    android:layout_height = "0dp"
+	    android:layout_weight="1"
+	    android:id="@+id/layout4">
+    	</LinearLayout>
     	<LinearLayout android:orientation="horizontal"
 	    android:layout_width="fill_parent"
 	    android:layout_height = "0dp"
-	    android:layout_weight="1">
-	    
-	    <Button
-        	android:id="@+id/l5Button"
-       		android:background="@drawable/custom"
-       		android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-        	android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-			android:layout_marginLeft="20dp"
-        	android:layout_marginRight="20dp"
-        	android:text="5" />
-
-    	<Button
-        	android:id="@+id/l6Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-	        android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-    	    android:layout_marginRight="20dp"
-        	android:text="6" />
-
-	    <Button
-    	    android:id="@+id/l7Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-       		android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-        	android:layout_marginRight="20dp"
-        	android:text="7" />
-
-    	<Button
-        	android:id="@+id/l8Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-			android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-        	android:layout_marginRight="20dp"
-        	android:text="8" />
-    	
-    	</LinearLayout>
-
-		<LinearLayout android:orientation="horizontal"
-	    android:layout_width="fill_parent"
-	    android:layout_height = "0dp"
-	    android:layout_weight="1">
-	    
-	    <Button
-        	android:id="@+id/l9Button"
-       		android:background="@drawable/custom"
-       		android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-        	android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-			android:layout_marginLeft="20dp"
-        	android:layout_marginRight="20dp"
-        	android:text="9" />
-
-    	<Button
-        	android:id="@+id/l10Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-	       	android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-    	    android:layout_marginRight="20dp"
-        	android:text="10" />
-
-	    <Button
-    	    android:id="@+id/l11Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-       		android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-        	android:layout_marginRight="20dp"
-        	android:text="11" />
-
-    	<Button
-        	android:id="@+id/l12Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-        	android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-        	android:layout_marginRight="20dp"
-        	android:text="12" />
-
-    	</LinearLayout>
-    	
-		<LinearLayout android:orientation="horizontal"
-	    android:layout_width="fill_parent"
-	    android:layout_height = "0dp"
-	    android:layout_weight="1">
-	    
-	    <Button
-        	android:id="@+id/l13Button"
-       		android:background="@drawable/custom"
-       		android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-        	android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-			android:layout_marginLeft="20dp"
-        	android:layout_marginRight="20dp"
-        	android:text="13" />
-
-    	<Button
-        	android:id="@+id/l14Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-	        android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-    	    android:layout_marginRight="20dp"
-        	android:text="14" />
-
-	    <Button
-    	    android:id="@+id/l15Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-       		android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-        	android:layout_marginRight="20dp"
-        	android:text="15" />
-
-    	<Button
-        	android:id="@+id/l16Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-        	android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-        	android:layout_marginRight="20dp"
-        	android:text="16" />
-    	
-    	</LinearLayout>
-    	
-		<LinearLayout android:orientation="horizontal"
-	    android:layout_width="fill_parent"
-	    android:layout_height = "0dp"
-	    android:layout_weight="1">
-	    
-	    <Button
-        	android:id="@+id/l17Button"
-       		android:background="@drawable/custom"
-       		android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-        	android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-			android:layout_marginLeft="20dp"
-        	android:layout_marginRight="20dp"
-        	android:text="17" />
-
-    	<Button
-        	android:id="@+id/l18Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-	        android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-    	    android:layout_marginRight="20dp"
-        	android:text="18" />
-
-	    <Button
-    	    android:id="@+id/l19Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-       		android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-        	android:layout_marginRight="20dp"
-        	android:text="19" />
-
-    	<Button
-        	android:id="@+id/l20Button"
-        	android:background="@drawable/custom"
-        	android:textStyle="bold"
-        	android:textColor="#000000"
-        	android:textSize="20dp"
-        	android:enabled="false"
-        	android:layout_width="0dp"
-        	android:layout_weight="1"
-        	android:layout_height="wrap_content"
-        	android:layout_marginRight="20dp"
-        	android:text="20" />
-    	
+	    android:layout_weight="1"
+	    android:id="@+id/layout5">
     	</LinearLayout>
     	
 </LinearLayout>

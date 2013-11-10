@@ -36,7 +36,9 @@ public class QuestionClass {
 						answer = question1-question2;
 					}
 				}
-				answer = question1 - question2;
+				else{
+					answer = question1 - question2;
+				}
 				break;
 			case 2:
 				question1 = rand.nextInt(10)+1;

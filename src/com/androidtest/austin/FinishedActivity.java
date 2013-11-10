@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 public class FinishedActivity extends Activity {
 
-	TextView emailLink, message;
+	TextView emailLink, message, score;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,8 @@ public class FinishedActivity extends Activity {
 		setContentView(R.layout.activity_finished);
 		emailLink = (TextView)  findViewById(R.id.emailText);
 		message = (TextView) findViewById(R.id.messageText);
+		score = (TextView) findViewById(R.id.scoreText);
+		score.setText("Your score: " + Integer.toString(MainActivity.score));
 		emailLink.setClickable(true);
 		emailLink.setOnClickListener(new View.OnClickListener(){
 			@Override

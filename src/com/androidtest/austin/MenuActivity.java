@@ -61,6 +61,7 @@ public class MenuActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			Intent startLevelMenu = new Intent("com.androidtest.austin.LEVELSELECT");
+			//Intent startLevelMenu = new Intent("com.androidtest.austin.LPAGE");
 			startActivity(startLevelMenu);
 		}
 	});

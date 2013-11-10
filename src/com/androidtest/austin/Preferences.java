@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
@@ -20,12 +21,14 @@ import android.preference.PreferenceActivity;
 public class Preferences extends PreferenceActivity{
 
 	Preference resetButton, emailButton;
+	CheckBoxPreference sound;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		resetButton = (Preference) findPreference("reset");
 		emailButton = (Preference) findPreference("email");
+		sound = (CheckBoxPreference) findPreference("sound");
 		
 		resetButton.setOnPreferenceClickListener(new OnPreferenceClickListener() {
 			public boolean onPreferenceClick(Preference preference) {
@@ -60,6 +63,7 @@ public class Preferences extends PreferenceActivity{
 	            return true;
 	         }
 		});
+		
 	}
 
 	@Override

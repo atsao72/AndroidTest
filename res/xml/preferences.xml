@@ -11,5 +11,11 @@
         android:key = "email"
         android:summary = "rook.customerservice@gmail.com"
     />
+    <CheckBoxPreference
+        android:title="Sound"
+        android:key="sound"
+        android:summary="Turn sound effects On or Off"
+        android:defaultValue="true"
+    />
 
 </PreferenceScreen>

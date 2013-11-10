@@ -26,7 +26,6 @@ public class HowToPlayActivity extends Activity {
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
 				switch(numClicks){
 				case 0: 
 					instructions.setText("After 4 seconds, the initial equation will change to say something like: \n Add 6 \n Keep the new answer, 13, in mind.");
@@ -41,35 +40,19 @@ public class HowToPlayActivity extends Activity {
 					numClicks++;
 					break;
 				case 3:
-					instructions.setText("The time between equations will start to decrease as you advance. Good luck!");
+					instructions.setText("The time between equations will start to decrease as you advance. \n Your score is calculated based on speed and how many lives you have. \n Good luck!");
 					numClicks++;
 					break;
 				case 4:
 					finish();
 					break;
 				}
-			}
-				/*if(numClicks == 0){
-				instructions.setText("this is the second instruction page");
-				numClicks++;
-				}
-				else if(numClicks == 1) {
-					instructions.setText("this is the third instruction page");
-					numClicks++;
-				}
-				else if(numClicks == 2) {
-					
-				}
-				*/
-			
+			}			
 			});
-	
-		
-}
+		}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		finish();
 	}

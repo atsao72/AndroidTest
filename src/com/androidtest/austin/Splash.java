@@ -18,7 +18,8 @@ public class Splash extends Activity {
 	//MediaPlayer ourSong;
 	Thread splashTimer;
 	public static FileOutputStream fos;
-	public static String FILENAME="Level";
+	public static String LEVEL="Level";
+	public static String SCORE = "Score";
 	public static final int MAX_LEVELS = 20;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +35,8 @@ public class Splash extends Activity {
 			e.printStackTrace();
 		}
 */
-		new loadData().execute(FILENAME);
-		
+		new loadData().execute(LEVEL);
+		new loadData().execute(SCORE);
 		//ourSong = MediaPlayer.create(Splash.this, R.raw.rooksoundclip);
 		//ourSong.start();
 		
@@ -104,9 +105,12 @@ public class Splash extends Activity {
 		@Override
 		protected String doInBackground(String... arg0) {
 			try {
-				FileInputStream fis = openFileInput(FILENAME);
+				FileInputStream fis = openFileInput(LEVEL);
 				LevelSelectActivity.level=fis.read();
 				fis.close();
+				FileInputStream fis1 = openFileInput(SCORE);
+				MainActivity.score=fis1.read();
+				fis1.close();
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

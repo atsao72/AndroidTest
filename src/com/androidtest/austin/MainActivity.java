@@ -22,6 +22,9 @@ import android.content.res.AssetManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,11 +34,11 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 
 	static Button showButton, pauseButton;
-	static TextView display, levelDisplay;
+	static TextView display, levelDisplay, scoreDisplay;
 	//String answer, correct;
 	static String correct;
 	Thread timer;
-	static int level, triesLeft;
+	static int level, triesLeft, score;
 	int speed, levelStart;
 	boolean paused;
 	Object object;
@@ -57,16 +60,16 @@ public class MainActivity extends Activity {
 		showButton = (Button) findViewById(R.id.buttonShow);
 		//pauseButton = (Button) findViewById(R.id.pauseButton);
 		display = (TextView) findViewById(R.id.textViewDisplay);
+		scoreDisplay = (TextView) findViewById(R.id.scoreText);
 		life1 = (ImageView) findViewById(R.id.life1);
 		life2 = (ImageView) findViewById(R.id.life2);
 		life3 = (ImageView) findViewById(R.id.life3);
 		questions = new ArrayList<String>();
 		answers = new ArrayList<String>();
 		//final SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-		speed=4000;
+		
 		//levelsLocked = new boolean[3];
 		triesLeft=3;
-		
 		//gotBundle = getIntent().getExtras();
 		//levelStart = gotBundle.getInt("level");
 		if(LevelSelectActivity.level==0||LevelSelectActivity.level==-1){
@@ -77,10 +80,27 @@ public class MainActivity extends Activity {
 		}
 		level=levelStart;
 		levelDisplay.setText("Level " + Integer.toString(level));
+		scoreDisplay.setText("Score: " + Integer.toString(score));
+		
+		if(level<5)
+			speed=4000;
+		else if(level<10)
+			speed=3000;
+		else if(level<15)
+			speed = 2000;
+		else if(level<=20)
+			speed=1000;
+		final Animation in = new AlphaAnimation(0.0f, 1.0f);
+	    in.setDuration(100);
 
+	    final Animation out = new AlphaAnimation(1.0f, 0.0f);
+	    out.setDuration(100);
+	    
+	    
 		showButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				save();
 				if(level>Splash.MAX_LEVELS){
 					finish();
 					Intent finish = new Intent(MainActivity.this, FinishedActivity.class);
@@ -100,7 +120,7 @@ public class MainActivity extends Activity {
 					life3.setImageResource(R.drawable.image_life);
 					getQuestion1();
 				}
-				if(level%10==0&&speed!=1000&&triesLeft==3){
+				if(level%5==0&&speed!=1000&&triesLeft==3){
 					speed=speed-1000;
 				}
 				display.setText(questions.get(0));
@@ -125,7 +145,24 @@ public class MainActivity extends Activity {
 								runOnUiThread(new Runnable() {
 									@Override
 									public void run() {
-										display.setText(question);
+										out.setAnimationListener(new Animation.AnimationListener() {
+										    @Override
+										    public void onAnimationEnd(Animation animation) {
+										        display.setText(question);
+										        display.startAnimation(in);
+										    }
+
+											@Override
+											public void onAnimationRepeat(
+													Animation animation) {												
+											}
+											@Override
+											public void onAnimationStart(
+													Animation animation) {												
+											}
+										});
+										display.startAnimation(out);
+										//display.setText(question);
 										//display.setText(qClass.getAdditionalEquation());
 									}
 								});
@@ -168,16 +205,23 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
+		save();
+		pause();
+	}
+	
+	private void save(){
 		try {
-			Splash.fos = openFileOutput(Splash.FILENAME, Context.MODE_PRIVATE);
+			Splash.fos = openFileOutput(Splash.LEVEL, Context.MODE_PRIVATE);
+			Splash.fos.flush();
 			Splash.fos.write(level);
+			Splash.fos = openFileOutput(Splash.SCORE, Context.MODE_PRIVATE);
+			Splash.fos.write(score);
 			Splash.fos.close();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		pause();
 	}
 
 
@@ -213,15 +257,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onStop() {
 		super.onStop();
-		try {
-			Splash.fos = openFileOutput(Splash.FILENAME, Context.MODE_PRIVATE);
-			Splash.fos.write(level);
-			Splash.fos.close();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		save();
 		finish();
 	}
 
