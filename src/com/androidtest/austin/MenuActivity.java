@@ -3,12 +3,8 @@ package com.androidtest.austin;
 import com.androidtest.austin.R;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 
@@ -18,7 +14,6 @@ public class MenuActivity extends Activity {
 	Button howToButton;
 	Button optionsButton;
 	Button levelButton;
-	//public static boolean[] levelsLocked = new boolean[20];
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +24,6 @@ public class MenuActivity extends Activity {
 		howToButton = (Button) findViewById(R.id.howToButton);
 		optionsButton = (Button) findViewById(R.id.PrefsButton);
 		
-		/*for(int i=0;i<levelsLocked.length;i++){
-			levelsLocked[i]=false;
-		}*/
-		//LevelSelectActivity levelActivity = new LevelSelectActivity();
-		//levelActivity.setActivity();
 		
 	startButton.setOnClickListener(new View.OnClickListener() {
 		@Override

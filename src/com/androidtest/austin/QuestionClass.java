@@ -30,11 +30,10 @@ public class QuestionClass {
 				break;
 			case 1:
 				if(level<10){
-					while(question1-question2<=0){
-						question1 = rand.nextInt(20)+1;
-						question2 = rand.nextInt(20)+1;
-						answer = question1-question2;
+					while(question1<question2){
+						question2 = rand.nextInt(question1)+1;
 					}
+					answer = question1-question2;
 				}
 				else{
 					answer = question1 - question2;
@@ -61,30 +60,38 @@ public class QuestionClass {
 	public String getAdditionalEquation(){
 		question1 = rand.nextInt(20)+1;
 		int operationInt = rand.nextInt(operations.size());
+		if(answer == 1 || answer == 0){
+			operationInt = 0;
+		}
 		operation = operations.get(operationInt);
 		switch(operationInt){
 		case 0:
 			answer = answer + question1;
 			break;
 		case 1:
-			if(level<10){
-				while(answer<question1){
-					question1 = rand.nextInt(answer)+1;
-				}
-				answer = answer - question1;
+			if(level<10&&answer<question1){
+				question1 = rand.nextInt(answer)+1;
 			}
-			else{
-				answer = answer - question1;
-			}
+			answer = answer - question1;
 			break;
 		case 2:
-			question1 = rand.nextInt(10)+1;
+			if(level<10)
+				question1 = rand.nextInt(10)+1;
+			else
+				question1 = rand.nextInt(10) - 11;
 			answer = answer * question1;
 			break;
 		case 3:
 			//question1 = rand.nextInt(10)+1;
-			while(answer<question1||answer%question1!=0 ){
-				question1 = rand.nextInt(answer)+1;
+			if(level<10){
+				while(answer%question1!=0){
+					question1 = rand.nextInt(answer)+1;
+				}
+			}
+			else{
+				while(answer%question1!=0){
+					question1 = rand.nextInt(20)-answer;
+				}
 			}
 			answer = answer / question1;
 			break;

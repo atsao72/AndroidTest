@@ -24,7 +24,7 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:src="@drawable/math1"
-        android:layout_weight="5"/>
+        android:layout_weight="6"/>
 
     <Button
         android:id="@+id/startButton"
@@ -32,6 +32,7 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="3dp"
         android:text="Start game" 
         android:layout_weight="1"/>
 
@@ -40,6 +41,7 @@
         android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="3dp"
         android:text="How To Play" 
         android:layout_weight="1"/>
     
@@ -48,6 +50,7 @@
         android:layout_width="200dp"
         android:layout_height="0dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="3dp"
         android:text="Level Select" 
         android:layout_weight="1"/>
 	<Button

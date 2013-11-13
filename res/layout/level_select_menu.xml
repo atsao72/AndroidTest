@@ -54,7 +54,7 @@
 	    android:layout_weight="1"
 	    android:id="@+id/layout4">
     	</LinearLayout>
-    	<LinearLayout android:orientation="horizontal"
+    <LinearLayout android:orientation="horizontal"
 	    android:layout_width="fill_parent"
 	    android:layout_height = "0dp"
 	    android:layout_weight="1"

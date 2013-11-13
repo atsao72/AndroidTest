@@ -1,7 +1,6 @@
 package com.androidtest.austin;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 import com.androidtest.austin.R;
 
@@ -9,15 +8,10 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.text.InputType;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -49,8 +43,6 @@ public class AnswerInputDialogActivity extends Activity {
 
 		userInput.setRawInputType(Configuration.KEYBOARD_12KEY);
 		
-		// gotBundle = getIntent().getExtras();
-		// final int level = gotBundle.getInt("level");
 		SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 		soundOn = getPrefs.getBoolean("sound", true);
 		

@@ -1,32 +1,21 @@
 package com.androidtest.austin;
 
 
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import com.androidtest.austin.R;
 
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.AssetManager;
-import android.view.Menu;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -79,6 +68,8 @@ public class MainActivity extends Activity {
 			levelStart= LevelSelectActivity.level;
 		}
 		level=levelStart;
+		if(level==1)
+			score=0;
 		levelDisplay.setText("Level " + Integer.toString(level));
 		scoreDisplay.setText("Score: " + Integer.toString(score));
 		
@@ -107,12 +98,9 @@ public class MainActivity extends Activity {
 					startActivity(finish);					
 				}
 				else{
-				//speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
 				qClass = new QuestionClass(level);
 				levelDisplay.setText("Level " + Integer.toString(level));
 				showButton.setVisibility(View.INVISIBLE);
-				//questionArray=questions.get(level-1).split("&");
-				//display.setText(questionArray[0]);
 				
 				if(triesLeft==3){
 					life1.setImageResource(R.drawable.image_life);
@@ -120,7 +108,7 @@ public class MainActivity extends Activity {
 					life3.setImageResource(R.drawable.image_life);
 					getQuestion1();
 				}
-				if(level%5==0&&speed!=1000&&triesLeft==3){
+				if(triesLeft==3&&level%5==0&&speed!=1000){
 					speed=speed-1000;
 				}
 				display.setText(questions.get(0));
@@ -133,10 +121,8 @@ public class MainActivity extends Activity {
 							//	speed=4000;
 							//}
 							sleep(speed);
-							//for (int i = 1; i < questionArray.length; i++) {
 							for (int i=1; i<3;i++){
 								pauseTest();
-								//speed= Integer.parseInt(getPrefs.getString("speedList", "3000"));
 								if(triesLeft==3){
 									getNextQuestions();
 									correct=qClass.getAnswer();
@@ -162,12 +148,10 @@ public class MainActivity extends Activity {
 											}
 										});
 										display.startAnimation(out);
-										//display.setText(question);
-										//display.setText(qClass.getAdditionalEquation());
 									}
 								});
 							sleep(speed);
-							}							
+							}
 							pauseTest();
 						}
 						catch (InterruptedException e) {
@@ -178,9 +162,6 @@ public class MainActivity extends Activity {
 							public void run() {
 								
 								Intent intent = new Intent(MainActivity.this, AnswerInputDialogActivity.class);
-								//Bundle bundle = new Bundle();
-								//bundle.putInt("level", level);
-								//intent.putExtras(bundle);
 								startActivity(intent);
 								
 							}
@@ -262,14 +243,12 @@ public class MainActivity extends Activity {
 	}
 
 
-	public static void getQuestion1(){
-		//QuestionClass qClass = new QuestionClass(level);
+	private static void getQuestion1(){
 		questions.clear();
 		questions.add(qClass.getFirstEquation());
 	}
 	
-	public static void getNextQuestions(){
-		//QuestionClass qClass = new QuestionClass(level);
+	private static void getNextQuestions(){
 		questions.add(qClass.getAdditionalEquation());
 	}
 
